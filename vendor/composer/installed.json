@@ -1,0 +1,46 @@
+[
+    {
+        "name": "ntentan/atiaa",
+        "version": "v0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ntentan/atiaa.git",
+            "reference": "a32d5e0f1012362c6b24c3e73f895af5a2779060"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ntentan/atiaa/zipball/a32d5e0f1012362c6b24c3e73f895af5a2779060",
+            "reference": "a32d5e0f1012362c6b24c3e73f895af5a2779060",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/dbunit": "1.*",
+            "phpunit/phpunit": "4.*",
+            "symfony/yaml": "^2.0"
+        },
+        "time": "2015-12-16 13:51:39",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ntentan\\atiaa\\": "src/",
+                "ntentan\\atiaa\\tests\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "James Ekow Abaka Ainooson",
+                "email": "jainooson@gmail.com"
+            }
+        ],
+        "description": "A slim wrapper around PDO to provide some extra utilities"
+    }
+]
