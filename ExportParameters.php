@@ -39,7 +39,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
 
 
                 <li class="dropdown">
@@ -61,51 +61,31 @@
         </div>
     </div>
 
-    <form class="form-horizontal" role="form" method="post" action="general2.php">
+    <form class="form-horizontal" role="form" method="post" action="addJob.php">
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">User Name</label>
+        <label for="ip" class="col-sm-2 control-label">Localhost IPAddress</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Database Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
+            <input type="text" class="form-control" id="ip" name="ipAddress" placeholder="IPAddress" value="">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Table Name</label>
+        <label for="ip" class="col-sm-2 control-label">Virtual Machine IPAddress</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="tablename" name="tablename" placeholder="TBName" value="">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="pswd" name="password" placeholder="password" value="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Host</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="host" name="host" placeholder="host" value="">
+            <input type="text" class="form-control" id="vmhost" name="vmhost" placeholder="VMIP" value="">
         </div>
     </div>
 
 
     <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Select Database</label>
+        <label for="folder" class="col-sm-2 control-label">Folder Name</label>
         <div class="col-sm-10">
-             <select  name=databasetype>
-                <option value="postgresql">Postgresql</option>
-                <option value="mysql">Mysql</option>
-                <option value="sqlite">Sqlite</option>
-            </select> 
+            <input type="text" class="form-control" id="folder" name="foldername" placeholder="folderName" value="">
         </div>
     </div>
+
+    
+    
 
 
     <button type = "submit" class = "btn btn-primary">Connect</button>

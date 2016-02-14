@@ -20,7 +20,7 @@
 <div class="navbar-inner">
 <div class="container">
 <ul class="nav">
-<li><a href="#">Home</a></li>
+<li><a href="index.php">Home</a></li>
 
 
 <li class="dropdown">
@@ -29,15 +29,26 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="form.html">Postgres</a></li>
-        <li><a href="form.html">MySQL</a></li>
-        <li><a href="sqform.html">Sqlite</a></li>
+        <li><a href="form.php">Postgres</a></li>
+        <li><a href="form.php">MySQL</a></li>
+        
     </ul>
 </li>
 
 
 </li>
-<li><a href="#">Hadoop</a></li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-th-large"></i> Hadoop
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="form.php">Export</a></li>
+        <li><a href="form.php">Import</a></li>
+        
+    </ul>
+</li>
    
 </ul>
 </div>

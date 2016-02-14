@@ -6,6 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ntentan\\logger\\' => array($vendorDir . '/ntentan/logger/src'),
+    'ntentan\\config\\tests\\' => array($vendorDir . '/ntentan/config/tests'),
+    'ntentan\\config\\' => array($vendorDir . '/ntentan/config/src'),
     'ntentan\\atiaa\\tests\\' => array($vendorDir . '/ntentan/atiaa/tests'),
     'ntentan\\atiaa\\' => array($vendorDir . '/ntentan/atiaa/src'),
+    'clearice\\' => array($vendorDir . '/ekowabaka/clearice/src'),
+    'ajumamoro\\' => array($vendorDir . '/ekowabaka/ajumamoro/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );

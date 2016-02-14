@@ -2,12 +2,14 @@
     "name": "root/grace",
     "description": "compose",
     "require": {
-        "ntentan/atiaa": "^0.2.0"
+        "ntentan/atiaa": "^0.2.0",
+	"ekowabaka/ajumamoro": "dev-master"
     },
     "authors": [
         {
             "name": "jemima",
             "email": "emereck7@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability" : "dev"
 }

@@ -12,6 +12,7 @@
    <script src="js/bootstrap.js"></script>
    <title>GemSoft</title>
 </head>
+
 <body>
 <div class="container">
 

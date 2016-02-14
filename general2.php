@@ -27,7 +27,7 @@
 <div class="navbar-inner">
 <div class="container">
 <ul class="nav">
-<li><a href="#">Home</a></li>
+<li><a href="index.php">Home</a></li>
 
 
 <li class="dropdown">
@@ -36,15 +36,25 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="form.html">Postgres</a></li>
-        <li><a href="form.html">MySQL</a></li>
-        <li><a href="sqform.html">Sqlite</a></li>
+        <li><a href="form.php">Postgres</a></li>
+        <li><a href="form.php">MySQL</a></li>
+        <li><a href="sqform.php">Sqlite</a></li>
     </ul>
 </li>
 
 
 </li>
-<li><a href="#">Hadoop</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-th-large"></i> Hadoop
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="ExportParameters.php">Export</a></li>
+        <li><a href="form.html">Import</a></li>
+        
+    </ul>
+</li>
    
 </ul>
 </div>
@@ -61,7 +71,7 @@
 require "vendor/autoload.php";
 
 
-//require_once 'pagination.php';
+
  
     
 
@@ -70,15 +80,9 @@ $database =$_POST['databasename'];
 $password =$_POST['password'];
 $host=$_POST['host'];
 $tablename=$_POST['tablename'];
-
-
-//var_dump($_POST);
 $temp = $_POST['databasetype'];
 
-
-
-
-
+//A library I borrowed from a friend for connection
 $atiaa = \ntentan\atiaa\Driver::getConnection(
     array(
         'driver' => $temp,
@@ -88,29 +92,89 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
         'password'=>$password
     )
 );
-
+    //Make the query
     $data = $atiaa->query("SELECT * FROM $tablename limit 100");
 
 
-    //pagination
+    
     $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
     $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
     $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
     
     $columns = array();
-    $eliminatedFiels = array("user_id","bank_name","description");
-    // $pagination  = new pagination( $atiaa, $data );
- 
-    // $results    = $pagination->getData( $page, $limit );
-    //var_dump($data) ;
+    $eliminatedFields = array("user_id","bank_name","description");
+    
     $col="#F1F1F1";
     ?>
+
+
+<form class="form-horizontal" role="form" method="post" action="conditions.php">
+    <div class="row">
+<div class="span4">
+        <label for="ip" class="col-sm-2 control-label">Add New</label>
+        <div class="col-sm-10">
+             <select multiple name=columntype>
+            <?php
+        foreach($data[0] as $key => $colName) {
+           
+            echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
+            $columns[] = $key;
+
+        }
+    ?>  
+        </select> 
+</div>
+    
+        </div>
+         <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <!--Will be used to display an alert to the user-->
+        </div>
+    </div>
+    </div>
+   
+</form>
+
+<form class="form-horizontal" role="form" method="post" action="conditions.php">
+    <div class="row">
+<div class="span4">
+        <label for="ip" class="col-sm-2 control-label">Conditions</label>
+        <div class="col-sm-10">
+             <select multiple name=columntype>
+            <?php
+        foreach($data[0] as $key => $colName) {
+           
+            echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
+            $columns[] = $key;
+
+        }
+    ?>  
+        </select> 
+</div>
+    
+        </div>
+         <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <!--Will be used to display an alert to the user-->
+        </div>
+    </div>
+    </div>
+   
+</form>
+
+
+
+
+
+
 <table  class='table' >
 <tr bgcolor=<?php echo $col; ?> size=15>
     <?php
         foreach($data[0] as $key => $colName) {
            // var_dump(array_search($key, $eliminatedFiels));
-            if(array_search($key, $eliminatedFiels)) {
+            if(array_search($key, $eliminatedFields)) {
                 continue;
             }
 
@@ -120,6 +184,8 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
         }
     ?>            
 </tr>
+
+
 <?php
    foreach($data as $row){
     echo '<tr>';
@@ -135,24 +201,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
    echo "</div>";        
 
 
-    //foreach ($data as $key => $cat) {
-    //  echo $cat['category_id'] ;
-    //echo $cat['category_name'] , '<br/>';
-
     
-    //}
-    //echo $data[0][category_name];
-    //echo $data[5][category_name];
-    //$data2 = $atiaa->query('SELECT * FROM products WHERE product_id =2 ');
-    //echo $data2;
-
-// Perform a query while quoting the literals.
-//$data3 = $atiaa->quoteQuery('SELECT "First Name" from "Users Table" ');
-
-    
-
-
-
 if (isset($_POST["connect"])) {
         $username = $_POST['username'];
         $database= $_POST['databasename'];
