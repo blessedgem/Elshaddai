@@ -50,7 +50,7 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="ExportParameters.php">Export</a></li>
+        <li><a href="ExportJob.php">Export</a></li>
         <li><a href="form.html">Import</a></li>
         
     </ul>
@@ -94,15 +94,14 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 );
     //Make the query
     $data = $atiaa->query("SELECT * FROM $tablename limit 100");
-
-
-    
+    $columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
+     
     $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
     $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
     $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
     
     $columns = array();
-    $eliminatedFields = array("user_id","bank_name","description");
+    //$eliminatedFields = array("user_id","bank_name","description");
     
     $col="#F1F1F1";
     ?>
@@ -115,10 +114,10 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
         <div class="col-sm-10">
              <select multiple name=columntype>
             <?php
-        foreach($data[0] as $key => $colName) {
+        foreach($columnType as $key => $cols) {
            
-            echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
-            $columns[] = $key;
+            echo "<option value = ".$cols['column_name'].">". ucwords(str_replace("_", " ", $cols['column_name'])) ."</option> ";
+            $columns[] = $$cols['column_name'];
 
         }
     ?>  
@@ -172,14 +171,14 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 <table  class='table' >
 <tr bgcolor=<?php echo $col; ?> size=15>
     <?php
-        foreach($data[0] as $key => $colName) {
+        foreach($columns as $key) {
            // var_dump(array_search($key, $eliminatedFiels));
-            if(array_search($key, $eliminatedFields)) {
-                continue;
-            }
+           // if(array_search($key, $eliminatedFields)) {
+           //     continue;
+           // }
 
             echo "<th>". ucwords(str_replace("_", " ", $key)) ."</th>";
-            $columns[] = $key;
+            //$columns[] = $key;
 
         }
     ?>            

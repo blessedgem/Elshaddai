@@ -1,0 +1,33 @@
+
+	
+	.formdiv {
+	 border: 1px solid #0088dd;
+	 background-color: #efefef;
+	 padding: 10px;
+	 margin: 10px;
+	 width: 400px;
+	 height: auto;
+	 text-align: center;
+	 border-radius: 10px;
+    
+			}
+
+	.selecteddiv{
+		/*border: 1px solid #0088dd;*/
+		height: 400px;
+		width: 39%;
+		margin-right: 1%;
+		border-radius: 10px;
+		background-color:#efefef; 
+		float:left;
+	}
+
+	.anotherfield{
+		/*border: 1px solid #0088dd;*/
+		height: 400px;
+		float: right;
+		width: 59%;
+		margin-left: 1%;
+		border-radius: 10px;
+		background-color:#efefef; 
+	}

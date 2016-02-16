@@ -4,6 +4,8 @@
      <title>GemSoft</title>
      <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 
+     <link rel="stylesheet" href="css/conditions.css" type="text/css">
+
 
    <meta charset='utf-8'>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +18,8 @@
 
 
 </head>
+
+
 <body>
 
 <div class="container" style="width:100% !important;">
@@ -61,43 +65,40 @@
    </div>
 </div>
 
+<!-- Where the page division goes-->
 
+<!--Div contains the form where columns are displayed -->
+
+<div class="formdiv">
+
+
+<button class="button"><img src="img/add2.jpeg" alt="Add Column"
+		 width="10" height="10" /> 
+</button>	
 </div>
 
-<?php
+<!--Div contains where the selected columns are displayed -->
+<div class="selecteddiv">
+	<div class="selected">
+		
+	</div>
 
-require "general2.php";
-
-
-?>
-
-<form class="form-horizontal" role="form" method="post" action="conditions.php">
-    <div class="row">
-<div class="span4">
-        <label for="ip" class="col-sm-2 control-label">Selected </label>
-        <div class="col-sm-10">
-             <select multiple name=columntype>
-            <?php
-        foreach($data[0] as $key => $colName) {
-           
-            echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
-            $columns[] = $key;
-
-        }
-    ?>  
-        </select> 
+	<div class="conditions">
+		
+	</div>
 </div>
-    
-        </div>
-         <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <!--Will be used to display an alert to the user-->
-        </div>
-    </div>
-    </div>
-   
-</form>
+
+<!--Div contains where other activities are displayed -->
+<div class="anotherfield">
+	
+</div>
+
+
+
+
+
+
+</div>
 
 
 </body>
