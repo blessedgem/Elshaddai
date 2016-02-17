@@ -31,3 +31,79 @@
 		border-radius: 10px;
 		background-color:#efefef; 
 	}
+
+	.popup{
+		width: 40%;
+		height: 50vh;
+		background-color: white;
+		position: absolute;
+		top: 25vh;
+		left: 30%;
+		display: none;
+		z-index: 9999;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.2);
+		border-radius: 4px;
+
+	}
+
+	.mask{
+		width: 100%;
+		height: 100vh;
+		background-color: black;
+		opacity: 0.1;
+		z-index: 999;
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+
+	.close{
+		position: absolute;
+		top: -15px;
+		height: 30px;
+		border-radius: 50%;
+		right:-15px;
+		line-height: 22px !important;
+		text-align: center !important;
+		background-color: #FF5722 !important;
+		opacity: 1 !important;
+		color:#FFF !important;
+		width:30px;
+		z-index: 999999;
+
+	}
+
+	.table td:hover{
+		background-color: #E1E1E1;
+	}
+
+	.table {
+	    width: 100%; /* Optional */
+	    /* border-collapse: collapse; */
+	    border-spacing: 0;
+	    border: 2px solid black;
+	}
+
+	.table tbody,
+	.table thead { display: block; }
+
+	thead tr th { 
+	    height: 30px;
+	    line-height: 30px;
+	    /*text-align: left;*/
+	}
+
+	.table tbody {
+	    height: 50vh;
+	    overflow-y: auto;
+	    overflow-x: auto;
+	}
+
+	tbody td, thead th {
+	    width: 20%; /* Optional */
+	}
+
+	tbody td:last-child, thead th:last-child {
+	    border-right: none;
+	}

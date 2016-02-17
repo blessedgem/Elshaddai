@@ -3,15 +3,14 @@
 <head>
      <title>GemSoft</title>
      <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-
-
-   <meta charset='utf-8'>
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-   <script src="js/bootstrap.js"></script>
+     <script src="Chart.js"></script>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
  
 
 
@@ -124,14 +123,14 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
         </select> 
 </div>
     
-        </div>
+</div>
          <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
+<div class="form-group">
+<div class="col-sm-10 col-sm-offset-2">
             <!--Will be used to display an alert to the user-->
-        </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
    
 </form>
 

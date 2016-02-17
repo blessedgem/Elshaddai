@@ -14,6 +14,7 @@
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
    <script src="js/bootstrap.js"></script>
+   <script src="js/conditions.js"></script>
  
 
 
@@ -65,15 +66,68 @@
    </div>
 </div>
 
+
+<?php
+
+require "vendor/autoload.php";
+
+$username =$_POST['username'];
+$database =$_POST['databasename'];
+$password =$_POST['password'];
+$host=$_POST['host'];
+$tablename=$_POST['tablename'];
+$temp = $_POST['databasetype'];
+
+//A library I borrowed from a friend for connection
+$atiaa = \ntentan\atiaa\Driver::getConnection(
+    array(
+        'driver' => $temp,
+        'user' => $username,
+        'dbname' => $database,
+        'host'=> $host,
+        'password'=>$password
+    )
+);
+    //Make the query
+    $data = $atiaa->query("SELECT * FROM $tablename limit 10");
+    $columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
+     
+    $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
+    $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
+    $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
+    
+    $columns = array();
+    foreach($columnType as $key) {
+        $columns[] = ucwords(str_replace("_", " ", $key['column_name']));
+        $dataTypes[] = $key['data_type'];
+	}
+
+    //$eliminatedFields = array("user_id","bank_name","description");
+    
+    $col="#F1F1F1";
+?>
+
+<script>
+
+   	var columns = <?php echo json_encode($columns); ?>;
+	var dataTypes = <?php echo json_encode($dataTypes); ?>;
+	
+</script>
+ 
 <!-- Where the page division goes-->
 
 <!--Div contains the form where columns are displayed -->
 
 <div class="formdiv">
 
-
-<button class="button"><img src="img/add2.jpeg" alt="Add Column"
+ 
+<button id="button" onclick="myFunction()"><img src="img/add2.jpeg" alt="Select Column"
 		 width="10" height="10" /> 
+</button>	
+
+
+<button class="button1" onclick="myFunction2()"><img src="img/add2.jpeg" alt="Set Condition"
+	 	width="10" height="10" /> 
 </button>	
 </div>
 
@@ -90,16 +144,35 @@
 
 <!--Div contains where other activities are displayed -->
 <div class="anotherfield">
-	
+	<?php
+	foreach($data as $row){
+    echo '<tr>';
+
+    foreach($columns as $col) {
+        echo '<td>'.$row[$col].'</td>';
+    }
+    echo '</tr>';
+
+   } 
+
+   echo "</table>";
+   echo "</div>";    
+	?>
 </div>
 
-
+<div class="mask" id="mask_all"></div>
 
 
 
 
 </div>
+<div class="popup" id='selection_popup'>
+	<div class="close" id="close_selection" >x</div>
+</div>
 
+<div class="popup" id='conditions_popup'>
+	<div class="close" id="close_condition">x</div>
+</div>
 
 </body>
 </html>
