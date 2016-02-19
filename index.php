@@ -14,7 +14,7 @@
 <div class="container">
 
 
-<h1><a href="#">GemSoft </a></h1>
+<h1><a href="index.php">GemSoft </a></h1>
    
 <div class="navbar">
 <div class="navbar-inner">
@@ -23,17 +23,7 @@
 <li><a href="index.php">Home</a></li>
 
 
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="icon-th-large"></i> Database
-        <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="form.php">Postgres</a></li>
-        <li><a href="form.php">MySQL</a></li>
-        
-    </ul>
-</li>
+<li><a href="form.php">Database</a></li>
 
 
 </li>

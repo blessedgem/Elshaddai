@@ -3,7 +3,7 @@
 <head>
      <title>GemSoft</title>
      <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="css/conditions.css" type="text/css">
 
 
@@ -109,6 +109,8 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 
 <script>
 
+	var selectedFields = {};
+	var selectedColumns = [];
    	var columns = <?php echo json_encode($columns); ?>;
 	var dataTypes = <?php echo json_encode($dataTypes); ?>;
 	
@@ -167,6 +169,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 
 </div>
 <div class="popup" id='selection_popup'>
+	<div id="accept_selection" ><i class = "fa fa-check"></i></div>
 	<div class="close" id="close_selection" >x</div>
 </div>
 

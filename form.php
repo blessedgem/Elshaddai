@@ -33,46 +33,45 @@
 <div class="container">
 
 
-    <h1><a href="#">GemSoft </a></h1>
+    <h1><a href="index.php">GemSoft </a></h1>
        
     <div class="navbar">
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
 
 
-                <li class="dropdown">
+                <li><a href="form.php">Database</a></li>
+                                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-th-large"></i> Database
+                        <i class="icon-th-large"></i> Hadoop
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="form.html">Postgres</a></li>
-                        <li><a href="form.html">MySQL</a></li>
-                        <li><a href="sqform.html">Sqlite</a></li>
+                        <li><a href="form.php">Export</a></li>
+                        <li><a href="form.php">Import</a></li>
+                        
                     </ul>
                 </li>
-
-                <li><a href="#">Hadoop</a></li>
-                   
+                                   
                 </ul>
             </div>
         </div>
     </div>
 
     <form class="form-horizontal" role="form" method="post" action="conditions.php">
-    <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">User Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">User Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
+            </div>
         </div>
-    </div>
     <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Database Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
-        </div>
+                <label for="email" class="col-sm-2 control-label">Database Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
+                </div>
     </div>
 
     <div class="form-group">
