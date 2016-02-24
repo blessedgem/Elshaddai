@@ -111,7 +111,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 
 	var selectedFields = {};
 	var selectedColumns = [];
-   	var columns = <?php echo json_encode($columns); ?>;
+  var columns = <?php echo json_encode($columns); ?>;
 	var dataTypes = <?php echo json_encode($dataTypes); ?>;
 	
 </script>

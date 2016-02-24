@@ -56,11 +56,11 @@
 
 
            <ul class="nav nav-list">
-    <li class="nav-header">What we are?</li>
+    
     <li class="active"><a href="#">Home</a></li>
     
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
+    
+    
     
 </ul>
    

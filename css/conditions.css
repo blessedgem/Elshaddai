@@ -104,19 +104,19 @@
 		z-index: 999999;
 	}
 
-	.table td:hover{
+	#popup_table td:hover{
 		background-color: #E1E1E1;
 	}
 
-	.table {
+	#popup_table {
 	    width: 100%; /* Optional */
 	    /* border-collapse: collapse; */
 	    border-spacing: 0;
-	    border: 2px solid black;
+	    /*border: 2px solid black;*/
 	}
 
-	.table tbody,
-	.table thead { display: block; }
+	#popup_table tbody,
+	#popup_table thead { display: block; }
 
 	thead tr th { 
 	    height: 30px;
@@ -124,7 +124,7 @@
 	    /*text-align: left;*/
 	}
 
-	.table tbody {
+	#popup_table tbody {
 	    height: 50vh;
 	    overflow-y: auto;
 	    overflow-x: auto;

@@ -3,15 +3,12 @@ $(document).ready(function(){
 		$(".mask").hide();
 		$(".popup table").remove();
 		$(".popup").hide();
-		selectedFields = {};
-		selectedColumns = [];
 	});
 
 	$("#accept_selection").click(function(){
 		$(".mask").hide();
 		$(".popup table").remove();
 		$(".popup").hide();
-		selectedFields = {};
 		
 		$(".selected table").remove();
 		
@@ -21,7 +18,7 @@ $(document).ready(function(){
 	    	selection[i + 1] = [selectedColumns[i]];
 	    };
 
-	    createTable($(".selected"), selection);
+	    createTable($(".selected"), selection, 'selection_table', false);
 	});
 });
 
@@ -33,10 +30,10 @@ function myFunction() {
     data = [];
     data[0] = ["Available Columns", "Selected Columns"] //headers
     for (var i = 0; i <= columns.length; i++) {
-    	data[i + 1] = [columns[i], ""];
+    	data[i + 1] = [columns[i], selectedColumns[i]];
     };
 
-    createTable($("#selection_popup"), data);
+    createTable($("#selection_popup"), data, "popup_table", true);
 }
 
 
@@ -46,29 +43,37 @@ function myFunction2() {
 }
 
 
-function createTable(container, data) {
-    var table = $("<table/>").addClass('table table-bordered');
+function createTable(container, data, id, clicks) {
+    var table = $("<table/>")
+    clicks ? table.addClass('table table-bordered') : null;
+    table.attr('id', id);
     $.each(data, function(rowIndex, r) {
         var row = $("<tr/>");
         $.each(r, function(colIndex, c) { 
             var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
             cell.text(c);
-            cell.click(function(){
-            	if(colIndex == 1) return false;
-            	if(selectedFields[rowIndex])
-				{
-					alert(cell.html() + ' already selected');
-					return false;
-				} 
-   				selectedColumns.push(cell.html());
-   				selectedFields[rowIndex] = true;
- 				populateTable();
-			});
-			cell.dblclick(function(){
-            	if(colIndex == 0) return false;
-            	selectedColumns.sli;
-				populateTable();
-			});
+
+            if(clicks)
+            {
+	            cell.click(function(){
+	            	if(colIndex == 1 || rowIndex == 0) return false;
+	            	if(selectedFields[cell.html()])
+					{
+						alert(cell.html() + ' already selected');
+						return false;
+					} 
+					selectedFields[cell.html()] = true;
+	   				selectedColumns.push(cell.html());
+	 				populateTable(id);
+				});
+				cell.dblclick(function(){
+	            	if(colIndex == 0 || rowIndex == 0) return false;
+            	   	selectedColumns.splice(rowIndex - 1 ,1);
+            	   	selectedFields[cell.html()] = false;
+					populateTable(id);
+				});
+			}
+
             row.append(cell);
         });
         table.append(row);
@@ -77,11 +82,12 @@ function createTable(container, data) {
 }
 
 
-function populateTable(){
+function populateTable(id){
 	var count = 0;
-	$('.table td').each(function(index, value) {
+	$('#' + id + ' td').each(function(index, value) {
     	if(index % 2 != 1) return true;
-		$(this).text(selectedColumns[count++]);
+    	$(this).html(' ');
+		$(this).html(selectedColumns[count++]);
 	});	
 }
 
