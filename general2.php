@@ -105,7 +105,6 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     $col="#F1F1F1";
     ?>
 
-
 <form class="form-horizontal" role="form" method="post" action="conditions.php">
     <div class="row">
 <div class="span4">
@@ -124,12 +123,12 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 </div>
     
 </div>
-         <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
+         <!--button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
 <div class="form-group">
 <div class="col-sm-10 col-sm-offset-2">
-            <!--Will be used to display an alert to the user-->
+            
 </div>
-</div>
+</div-->
 </div>
    
 </form>

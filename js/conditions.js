@@ -40,6 +40,26 @@ function myFunction() {
 function myFunction2() {
 	$(".mask").show();
     $("#conditions_popup").show("slow");
+
+    var form = $("<form/>");
+    var columns_drop_down = $("<select/>");
+    var filter_drop_down = $("<select/>");
+
+    $.each(selectedColumns, function(index, value){ 
+    	var option = $("<option/>");
+    	option.text(value);
+    	option.attr("value", index);
+    	option.click(function(){
+
+    	});
+    	columns_drop_down.append(option);
+    });
+
+    form.append(columns_drop_down);
+    form.append(filter_drop_down);
+
+    $("#conditions_popup").append(form);
+
 }
 
 

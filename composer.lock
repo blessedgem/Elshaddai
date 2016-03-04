@@ -12,18 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/ajumamoro.git",
-                "reference": "042dd6f38b338944bbd1be005b211c6c950a3ed4"
+                "reference": "8516e6df436a137c0b746cf7953834d01fe5b288"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/ajumamoro/zipball/042dd6f38b338944bbd1be005b211c6c950a3ed4",
-                "reference": "042dd6f38b338944bbd1be005b211c6c950a3ed4",
+                "url": "https://api.github.com/repos/ekowabaka/ajumamoro/zipball/8516e6df436a137c0b746cf7953834d01fe5b288",
+                "reference": "8516e6df436a137c0b746cf7953834d01fe5b288",
                 "shasum": ""
             },
             "require": {
-                "ekowabaka/clearice": "0.4.*",
-                "ntentan/config": "dev-master",
-                "ntentan/logger": "0.1.*"
+                "ekowabaka/clearice": "0.*",
+                "ntentan/config": "0.*",
+                "ntentan/logger": "0.*",
+                "predis/predis": "^1.0"
             },
             "bin": [
                 "bin/ajumamoro"
@@ -35,20 +36,20 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2015-12-20 23:11:37"
+            "time": "2016-02-24 22:30:39"
         },
         {
             "name": "ekowabaka/clearice",
-            "version": "v0.4.4",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/clearice.git",
-                "reference": "d39b688cf6b289a9cf7d5a7e551d69a449ba277d"
+                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/d39b688cf6b289a9cf7d5a7e551d69a449ba277d",
-                "reference": "d39b688cf6b289a9cf7d5a7e551d69a449ba277d",
+                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/718c39690fae7ba6a6b417ebef7f17caa097647c",
+                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +77,7 @@
                 }
             ],
             "description": "A tool to help in the building of CLI apps. Provides command line parsing and simple console I/O interfaces.",
-            "time": "2015-11-25 12:48:05"
+            "time": "2015-12-06 07:14:58"
         },
         {
             "name": "monolog/monolog",
@@ -84,12 +85,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "79817af0de141a2278e54acd01fb2532a7548516"
+                "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/79817af0de141a2278e54acd01fb2532a7548516",
-                "reference": "79817af0de141a2278e54acd01fb2532a7548516",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fb314292abcbfb61782e065fb9b13d5302ecc9e3",
+                "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +155,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-01-22 18:13:50"
+            "time": "2016-02-24 18:37:37"
         },
         {
             "name": "ntentan/atiaa",
@@ -200,7 +201,7 @@
         },
         {
             "name": "ntentan/config",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/config.git",
@@ -275,6 +276,61 @@
             ],
             "description": "A static PSR-3 logger wrapped around the super cool monolog.",
             "time": "2014-12-21 00:24:25"
+        },
+        {
+            "name": "predis/predis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "6bc1a38123f61efde92d8b4a73adabf168e09442"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/6bc1a38123f61efde92d8b4a73adabf168e09442",
+                "reference": "6bc1a38123f61efde92d8b4a73adabf168e09442",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete PHP client library for Redis",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2015-07-30 18:51:15"
         },
         {
             "name": "psr/log",

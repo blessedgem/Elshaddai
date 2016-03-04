@@ -1,11 +1,8 @@
 <?php
 
-return [
-    "store" => [
-        "driver" => "postgresql",
-        "host" => "localhost",
-        "user" => "postgres",
-        "password" => "gem",
-        "dbname" => "ajumamoro"
+return [ 'broker' => [
+        'driver' => 'redis',
+        'scheme' => 'tcp',
+        'host' => '127.0.0.1'
     ]
 ];

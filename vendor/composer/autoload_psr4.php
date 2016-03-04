@@ -14,5 +14,6 @@ return array(
     'clearice\\' => array($vendorDir . '/ekowabaka/clearice/src'),
     'ajumamoro\\' => array($vendorDir . '/ekowabaka/ajumamoro/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Predis\\' => array($vendorDir . '/predis/predis/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );
