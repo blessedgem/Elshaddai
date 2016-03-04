@@ -30,7 +30,7 @@ function myFunction() {
     data = [];
     data[0] = ["Available Columns", "Selected Columns"] //headers
     for (var i = 0; i <= columns.length; i++) {
-    	data[i + 1] = [columns[i], selectedColumns[i]];
+    	data[i + 1] = [i, selectedColumns[i]];
     };
 
     createTable($("#selection_popup"), data, "popup_table", true);
@@ -47,10 +47,10 @@ function myFunction2() {
 
     $.each(selectedColumns, function(index, value){ 
     	var option = $("<option/>");
-    	option.text(value);
-    	option.attr("value", index);
+    	option.text(columns[value]);
+    	option.attr("value", value);
     	option.click(function(){
-
+    		alert(dataTypes[value]);
     	});
     	columns_drop_down.append(option);
     });
@@ -71,7 +71,7 @@ function createTable(container, data, id, clicks) {
         var row = $("<tr/>");
         $.each(r, function(colIndex, c) { 
             var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
-            cell.text(c);
+            cell.text(rowIndex == 0 ? c : columns[c]);
 
             if(clicks)
             {
@@ -83,7 +83,7 @@ function createTable(container, data, id, clicks) {
 						return false;
 					} 
 					selectedFields[cell.html()] = true;
-	   				selectedColumns.push(cell.html());
+	   				selectedColumns.push(c);
 	 				populateTable(id);
 				});
 				cell.dblclick(function(){
@@ -107,7 +107,7 @@ function populateTable(id){
 	$('#' + id + ' td').each(function(index, value) {
     	if(index % 2 != 1) return true;
     	$(this).html(' ');
-		$(this).html(selectedColumns[count++]);
+		$(this).html(columns[selectedColumns[count++]]);
 	});	
 }
 
