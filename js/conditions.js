@@ -1,115 +1,185 @@
-$(document).ready(function(){
-	$(".close").click(function(){
-		$(".mask").hide();
-		$(".popup table").remove();
-		$(".popup").hide();
-	});
+	$(document).ready(function(){
+					$(".close").click(function()
+				{
+					$(".mask").hide();
+					$(".popup table").remove();
+					$(".popup").hide();
+				});
 
-	$("#accept_selection").click(function(){
-		$(".mask").hide();
-		$(".popup table").remove();
-		$(".popup").hide();
-		
-		$(".selected table").remove();
-		
-		var selection = [];
-	    selection[0] = ["Selected Columns"] //headers
-	    for (var i = 0; i <= selectedColumns.length; i++) {
-	    	selection[i + 1] = [selectedColumns[i]];
+		$("#accept_selection").click(function()
+		{
+					$(".mask").hide();
+					$(".popup table").remove();
+					$(".popup").hide();
+					
+					$(".selected table").remove();
+					
+					var selection = [];
+				    selection[0] = ["Selected Columns"] //headers
+				    for (var i = 0; i <= selectedColumns.length; i++) {
+				    	selection[i + 1] = [selectedColumns[i]];
 	    };
 
-	    createTable($(".selected"), selection, 'selection_table', false);
+		   			 createTable($(".selected"), selection, 'selection_table', false);
+		});
 	});
-});
 
 
-function myFunction() {
-	$(".mask").show();
-    $("#selection_popup").slideToggle("slow");
-
-    data = [];
-    data[0] = ["Available Columns", "Selected Columns"] //headers
-    for (var i = 0; i <= columns.length; i++) {
-    	data[i + 1] = [i, selectedColumns[i]];
-    };
-
-    createTable($("#selection_popup"), data, "popup_table", true);
-}
 
 
-function myFunction2() {
-	$(".mask").show();
-    $("#conditions_popup").show("slow");
+	function myFunction() 
+	{
+					$(".mask").show();
+				    $("#selection_popup").slideToggle("slow");
 
-    var form = $("<form/>");
-    var columns_drop_down = $("<select/>");
-    var filter_drop_down = $("<select/>");
+				    data = [];
+				    data[0] = ["Available Columns", "Selected Columns"] //headers
+				    for (var i = 0; i <= columns.length; i++) 
+				    {
+				    	data[i + 1] = [i, selectedColumns[i]];
+				    };
 
-    $.each(selectedColumns, function(index, value){ 
-    	var option = $("<option/>");
-    	option.text(columns[value]);
-    	option.attr("value", value);
-    	option.click(function(){
-    		alert(dataTypes[value]);
-    	});
-    	columns_drop_down.append(option);
-    });
-
-    form.append(columns_drop_down);
-    form.append(filter_drop_down);
-
-    $("#conditions_popup").append(form);
-
-}
+				    createTable($("#selection_popup"), data, "popup_table", true);
+	}
 
 
-function createTable(container, data, id, clicks) {
-    var table = $("<table/>")
-    clicks ? table.addClass('table table-bordered') : null;
-    table.attr('id', id);
-    $.each(data, function(rowIndex, r) {
-        var row = $("<tr/>");
-        $.each(r, function(colIndex, c) { 
-            var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
-            cell.text(rowIndex == 0 ? c : columns[c]);
+	function myFunction2() 
+	{
+		$(".mask").show();
+	    $("#conditions_popup").show("slow");
 
-            if(clicks)
-            {
-	            cell.click(function(){
-	            	if(colIndex == 1 || rowIndex == 0) return false;
-	            	if(selectedFields[cell.html()])
-					{
-						alert(cell.html() + ' already selected');
-						return false;
-					} 
-					selectedFields[cell.html()] = true;
-	   				selectedColumns.push(c);
-	 				populateTable(id);
-				});
-				cell.dblclick(function(){
-	            	if(colIndex == 0 || rowIndex == 0) return false;
-            	   	selectedColumns.splice(rowIndex - 1 ,1);
-            	   	selectedFields[cell.html()] = false;
-					populateTable(id);
-				});
-			}
+	    var form = $("<form/>");
+	    form.id = "conditions_form_id";
+	    var columns_drop_down = $("<select/>");
+	    var filter_drop_down = $("<select/>");
+			    
+			    
+	    var option = $("<option/>");
+	    columns_drop_down.append(option);
 
-            row.append(cell);
-        });
-        table.append(row);
-    });
-    return container.append(table);
-}
+	    $.each(selectedColumns, function(index, value)
+	    { 
+	    	var option = $("<option/>");
+	    	option.text(columns[value]);
+	    	option.attr("value", value);
+		    	
+	    	option.click(function()
+	    	{
+	    		filter_drop_down.html("");
+	    		createFilterDropDown(form, filter_drop_down, dataTypes[value]);
+	    	});
+
+	    	columns_drop_down.append(option);
+	    });
+
+	    form.append(columns_drop_down);
+	    form.append(filter_drop_down);
+
+	    $("#conditions_popup").append(form);
+	}
+
+	function createFilterDropDown(form, container, type)
+	{
+				var filters;
+				var field = "text";
+
+				switch(type) 
+		{
+				    case "date":
+				    	filters = ["", "On", "Before", "After", "Between"];
+				    	field = "date";
+				    	break;
+				    case "int":
+				    case "integer":
+				    case "numeric":
+				        filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
+				        break;
+			        case "string":
+			        case "text":
+				    case "varchar":
+				    case "character varying":
+				        filters = ["", "Contains", "Exactly"];
+				        break;
+				    case "boolean":
+						filters = ["", "Yes", "No"];
+						field = "checkbox";
+					    break;
+				    default:
+				        break
+		} 
+
+		$.each(filters, function(index, value)
+		{ 
+					var option = $("<option/>");
+			    	option.text(value);
+			    	option.attr("value", index);
+			    	option.click(function(){
+			    		field_inputs = index == 4 ? 2 : 1;
+			    		for (var i = 0; i < field_inputs; i++) 
+				    	{
+				    		var text_input = $("<input/>");
+				    		text_input.attr("type", field);
+				    		form.append(text_input);
+				    	};
+			    	});
+
+	    			container.append(option);
+	    });
+	}
 
 
-function populateTable(id){
-	var count = 0;
-	$('#' + id + ' td').each(function(index, value) {
-    	if(index % 2 != 1) return true;
-    	$(this).html(' ');
-		$(this).html(columns[selectedColumns[count++]]);
-	});	
-}
+	function createTable(container, data, id, clicks) 
+	{
+			    var table = $("<table/>")
+			    clicks ? table.addClass('table table-bordered') : null;
+			    table.attr('id', id);
+				    $.each(data, function(rowIndex, r) 
+				    {
+				        var row = $("<tr/>");
+						        $.each(r, function(colIndex, c) 
+						        { 
+						            var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
+						            cell.text(rowIndex == 0 ? c : columns[c]);
+
+						            if(clicks)
+						            {
+							            cell.click(function(){
+							            	if(colIndex == 1 || rowIndex == 0) return false;
+							            	if(selectedFields[cell.html()])
+											{
+												alert(cell.html() + ' already selected');
+												return false;
+											} 
+											selectedFields[cell.html()] = true;
+							   				selectedColumns.push(c);
+							 				populateTable(id);
+										});
+										cell.dblclick(function(){
+							            	if(colIndex == 0 || rowIndex == 0) return false;
+						            	   	selectedColumns.splice(rowIndex - 1 ,1);
+						            	   	selectedFields[cell.html()] = false;
+											populateTable(id);
+										});
+									}
+
+						            row.append(cell);
+						        });
+				        table.append(row);
+				    });
+			    return container.append(table);
+
+	}
+
+
+	function populateTable(id)
+	{
+				var count = 0;
+				$('#' + id + ' td').each(function(index, value) {
+			    	if(index % 2 != 1) return true;
+			    	$(this).html(' ');
+					$(this).html(columns[selectedColumns[count++]]);
+				});	
+	}
 
 
 
