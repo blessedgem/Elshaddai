@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "82f817ffdbd6585fae18404f8328bb8a",
+    "content-hash": "fb8ec916bc66061e887d6cf1efbba295",
     "packages": [
         {
             "name": "ekowabaka/ajumamoro",
@@ -85,12 +86,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3"
+                "reference": "a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fb314292abcbfb61782e065fb9b13d5302ecc9e3",
-                "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab",
+                "reference": "a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +156,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-02-24 18:37:37"
+            "time": "2016-03-13 16:20:24"
         },
         {
             "name": "ntentan/atiaa",
