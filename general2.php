@@ -49,7 +49,7 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="ExportJob.php">Export</a></li>
+        <li><a href="addJob.php">Export</a></li>
         <li><a href="form.html">Import</a></li>
         
     </ul>
@@ -105,7 +105,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     $col="#F1F1F1";
     ?>
 
-<form class="form-horizontal" role="form" method="post" action="conditions.php">
+<form class="form-horizontal" role="form" method="post" action="graph.php">
     <div class="row">
 <div class="span4">
         <label for="ip" class="col-sm-2 control-label">Add New</label>

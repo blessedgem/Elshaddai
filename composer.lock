@@ -5,7 +5,6 @@
         "This file is @generated automatically"
     ],
     "hash": "82f817ffdbd6585fae18404f8328bb8a",
-    "content-hash": "fb8ec916bc66061e887d6cf1efbba295",
     "packages": [
         {
             "name": "ekowabaka/ajumamoro",
@@ -41,16 +40,16 @@
         },
         {
             "name": "ekowabaka/clearice",
-            "version": "v0.5.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/clearice.git",
-                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c"
+                "reference": "3a6ef94e29db98b49cc912a90706f1fb1b1c5438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/718c39690fae7ba6a6b417ebef7f17caa097647c",
-                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c",
+                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/3a6ef94e29db98b49cc912a90706f1fb1b1c5438",
+                "reference": "3a6ef94e29db98b49cc912a90706f1fb1b1c5438",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +77,7 @@
                 }
             ],
             "description": "A tool to help in the building of CLI apps. Provides command line parsing and simple console I/O interfaces.",
-            "time": "2015-12-06 07:14:58"
+            "time": "2016-03-25 15:54:49"
         },
         {
             "name": "monolog/monolog",
@@ -86,12 +85,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab"
+                "reference": "dec4e574c2efcbbd4b6441ef64334daa79edf8f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab",
-                "reference": "a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/dec4e574c2efcbbd4b6441ef64334daa79edf8f2",
+                "reference": "dec4e574c2efcbbd4b6441ef64334daa79edf8f2",
                 "shasum": ""
             },
             "require": {
@@ -156,7 +155,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-13 16:20:24"
+            "time": "2016-03-26 08:27:31"
         },
         {
             "name": "ntentan/atiaa",

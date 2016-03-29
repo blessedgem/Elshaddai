@@ -13,7 +13,7 @@
    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="js/bootstrap.js"></script>
-   <script src="js/Chart.js"></script>
+   <script src="js/highcharts.js"></script>
 
 
 </head>
@@ -65,16 +65,17 @@
 </div>
 
 
-<canvas id="line_graph"  width="1200" height="400"></canvas>
+<div id="line_graph"  width="1000" height="400"></div>
 
 <script>
+
   $.ajax({
     method: "GET",
       url: "/GraphAPI.php",
       success: function(values){
-
+        //To convert string to json
       values = $.parseJSON(values);
-      var mainData = [];
+      var mainData = new Array();
       var labels = [];
 
       for(var key in values){
@@ -82,31 +83,49 @@
         vals ={}
 
         if(values.hasOwnProperty(key)) {
-
+          //Where you put the variables for the columns and 
           labels.push(values[key]['transaction_date']);
-          mainData.push(values[key]['amount']);
+          mainData.push(parseFloat(values[key]['amount']));
         }
 
       }
-
-      data = {
-        labels : labels,
-        datasets: [
-          { fillColor : "#21a560",data : mainData }
-        ]
-      }
       
-      console.log(data);
+      $(function (){
 
-      var ctx = $("#line_graph").get(0).getContext("2d");
-      // // This will get the first returned node in the jQuery collection.
-      var myLineChart = new Chart(ctx).Line(data);
-
+        $("#line_graph").highcharts({
+          chart: {
+            type: 'line'
+          },
+          xAxis: {
+            categories: labels,
+            show: true,
+            labels: {
+              enabled: true
+            }
+          },
+          yAxis: {
+ 
+          },
+          series: [{
+            animation:true,
+            name: 'data',
+            data: mainData,
+            color: "#21a560"
+          }]
+        });
+      });
+      // data = {
+      //   labels : labels,
+      //   datasets: [
+      //     { fillColor : "#21a560",data : mainData }
+      //   ]
+      // }
     },
     error: function(data){
 
     }
   });
+
 </script>
 
 </div>

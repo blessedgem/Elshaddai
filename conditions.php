@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +112,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 
 	var selectedFields = {};
 	var selectedColumns = [];
+  var conditionsCounter = 0;
   var columns = <?php echo json_encode($columns); ?>;
 	var dataTypes = <?php echo json_encode($dataTypes); ?>;
 	

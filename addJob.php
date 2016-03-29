@@ -1,7 +1,6 @@
 <?php
 require "vendor/autoload.php";
 require "ExportJob.php";
-require "general2.php";
 
 $data = require "ajumamoro.conf.php";;
 $queue = ajumamoro\Queue::connectBroker([

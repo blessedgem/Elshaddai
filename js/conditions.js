@@ -29,17 +29,17 @@
 
 	function myFunction() 
 	{
-					$(".mask").show();
-				    $("#selection_popup").slideToggle("slow");
+		$(".mask").show();
+	    $("#selection_popup").slideToggle("slow");
 
-				    data = [];
-				    data[0] = ["Available Columns", "Selected Columns"] //headers
-				    for (var i = 0; i <= columns.length; i++) 
-				    {
-				    	data[i + 1] = [i, selectedColumns[i]];
-				    };
+	    data = [];
+	    data[0] = ["Available Columns", "Selected Columns"] //headers
+	    for (var i = 0; i <= columns.length; i++) 
+	    {
+	    	data[i + 1] = [i, selectedColumns[i]];
+	    };
 
-				    createTable($("#selection_popup"), data, "popup_table", true);
+	    createTable($("#selection_popup"), data, "popup_table", true);
 	}
 
 
@@ -47,9 +47,9 @@
 	{
 		$(".mask").show();
 	    $("#conditions_popup").show("slow");
+	    $("#conditions_popup").find(":input").remove();
 
 	    var form = $("<form/>");
-	    form.id = "conditions_form_id";
 	    var columns_drop_down = $("<select/>");
 	    var filter_drop_down = $("<select/>");
 			    
@@ -80,50 +80,58 @@
 
 	function createFilterDropDown(form, container, type)
 	{
-				var filters;
-				var field = "text";
+		var filters;
+		var field = "text";
 
-				switch(type) 
+		switch(type) 
 		{
-				    case "date":
-				    	filters = ["", "On", "Before", "After", "Between"];
-				    	field = "date";
-				    	break;
-				    case "int":
-				    case "integer":
-				    case "numeric":
-				        filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
-				        break;
-			        case "string":
-			        case "text":
-				    case "varchar":
-				    case "character varying":
-				        filters = ["", "Contains", "Exactly"];
-				        break;
-				    case "boolean":
-						filters = ["", "Yes", "No"];
-						field = "checkbox";
-					    break;
-				    default:
-				        break
+		    case "date":
+		    	filters = ["", "On", "Before", "After", "Between"];
+		    	field = "date";
+		    	break;
+		    case "int":
+		    case "integer":
+		    case "numeric":
+		        filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
+		        break;
+	        case "string":
+	        case "text":
+		    case "varchar":
+		    case "character varying":
+		        filters = ["", "Contains", "Exactly"];
+		        break;
+		    case "boolean":
+				filters = ["", "Yes", "No"];
+				field = "checkbox";
+			    break;
+		    default:
+		        break
 		} 
 
 		$.each(filters, function(index, value)
 		{ 
-					var option = $("<option/>");
-			    	option.text(value);
-			    	option.attr("value", index);
-			    	option.click(function(){
-			    		field_inputs = index == 4 ? 2 : 1;
-			    		for (var i = 0; i < field_inputs; i++) 
-				    	{
-				    		var text_input = $("<input/>");
-				    		text_input.attr("type", field);
-				    		form.append(text_input);
-				    	};
-			    	});
+			var option = $("<option/>");
+	    	option.text(value);
+	    	option.attr("value", index);
+	    	
+	    	option.click(function(){
+	    		field_inputs = index == 4 ? 2 : (index == 0 ? 0 : 1);
+	    		for (var i = 0; i < conditionsCounter; i++) 
+		    	{
+		    		form.find(":last").remove();
+		    	};
+		    	
+		    	conditionsCounter = 0;
+	    		for (var i = 0; i < field_inputs; i++) 
+		    	{
+		    		var text_input = $("<input/>");
+		    		text_input.attr("type", field);
+		    		form.append(text_input);
+		    		conditionsCounter++;
+		    	};
+	    	});
 
-	    			container.append(option);
+			container.append(option);
 	    });
 	}
 

@@ -1,1 +1,46 @@
-ssh: connect to host 192.168.43.93 port 22: Network is unreachable
+Warning: Permanently added '10.76.254.127' (RSA) to the list of known hosts.
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+16/03/18 06:15:10 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
+16/03/18 06:15:10 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+16/03/18 06:15:10 INFO manager.SqlManager: Using default fetchSize of 1000
+16/03/18 06:15:10 INFO tool.CodeGenTool: Beginning code generation
+16/03/18 06:15:11 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "account_transactions" AS t LIMIT 1
+16/03/18 06:15:11 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/77e38b85820afae404e9966fedf2842b/account_transactions.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+16/03/18 06:15:15 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/77e38b85820afae404e9966fedf2842b/account_transactions.jar
+16/03/18 06:15:15 WARN manager.PostgresqlManager: It looks like you are importing from postgresql.
+16/03/18 06:15:15 WARN manager.PostgresqlManager: This transfer can be faster! Use the --direct
+16/03/18 06:15:15 WARN manager.PostgresqlManager: option to exercise a postgresql-specific fast path.
+16/03/18 06:15:15 INFO mapreduce.ImportJobBase: Beginning import of account_transactions
+16/03/18 06:15:15 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+16/03/18 06:15:16 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+16/03/18 06:15:17 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+16/03/18 06:15:17 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/03/18 06:15:18 WARN security.UserGroupInformation: PriviledgedActionException as:cloudera (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/newfolder7 already exists
+16/03/18 06:15:18 ERROR tool.ImportTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/newfolder7 already exists
+	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:146)
+	at org.apache.hadoop.mapreduce.JobSubmitter.checkSpecs(JobSubmitter.java:269)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:142)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1307)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1304)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1671)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1304)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1325)
+	at org.apache.sqoop.mapreduce.ImportJobBase.doSubmitJob(ImportJobBase.java:196)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runJob(ImportJobBase.java:169)
+	at org.apache.sqoop.mapreduce.ImportJobBase.runImport(ImportJobBase.java:266)
+	at org.apache.sqoop.manager.SqlManager.importTable(SqlManager.java:673)
+	at org.apache.sqoop.manager.PostgresqlManager.importTable(PostgresqlManager.java:127)
+	at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:497)
+	at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:605)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:143)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:179)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:218)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:227)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:236)
+
