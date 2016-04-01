@@ -22,6 +22,23 @@ $("#accept_selection").click(function(){
 
     createTable($(".selected"), selection, 'selection_table', false);
     });
+    
+    $("#accept_conditon").click(function(){
+        $(".mask").hide();
+        $(".popup table").remove();
+        $(".popup").hide();
+
+        $(".conditions table").remove();
+
+        var conditions = [];
+        conditions[0] = ["Selected Conditions"] //headers
+        for (var i = 0; i <= selectedConditions.length; i++) 
+        {
+            conditions[i + 1] = [selectedConditions[i]];
+        };
+
+        createTable($(".conditions"), conditions, 'conditions_table', false);
+    });
 });
 
 function myFunction() 
@@ -102,7 +119,6 @@ function createFilterDropDown(form, container, type)
             break;
         case "boolean":
             filters = ["", "Yes", "No"];
-            field = "null";
             break;
         default:
             break

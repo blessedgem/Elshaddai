@@ -93,7 +93,7 @@
     z-index: 999999;
 }
 
-#accept_selection{
+.accept{
     position: absolute;
     top: -15px;
     height: 30px;

@@ -112,13 +112,13 @@ $col="#F1F1F1";
 <div class="formdiv">
 
  
-<button id="button" onclick="myFunction()"><img src="img/add2.jpeg" alt="Select Column"
-		 width="10" height="10" /> 
+<button id="button" onclick="myFunction()">
+    <img src="img/add2.jpeg" alt="Select Column" width="10" height="10" /> 
 </button>	
 
 
-<button class="button1" onclick="myFunction2()"><img src="img/add2.jpeg" alt="Set Condition"
-	 	width="10" height="10" /> 
+<button class="button1" onclick="myFunction2()">
+    <img src="img/add2.jpeg" alt="Set Condition" width="10" height="10" /> 
 </button>	
 </div>
 
@@ -155,11 +155,12 @@ $col="#F1F1F1";
 
 </div>
 <div class="popup" id='selection_popup'>
-    <div id="accept_selection" ><i class = "fa fa-check"></i></div>
+    <div id="accept_selection" ><i class = "accept fa fa-check"></i></div>
     <div class="close" id="close_selection" >x</div>
 </div>
 
 <div class="popup" id='conditions_popup'>
+    <div id="accept_conditon" ><i class = "accept fa fa-check"></i></div>
     <div class="close" id="close_condition">x</div>
 </div>
 
