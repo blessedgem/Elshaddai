@@ -27,17 +27,29 @@ $("#accept_selection").click(function(){
         $(".mask").hide();
         $(".popup table").remove();
         $(".popup").hide();
-
+        
         $(".conditions table").remove();
+        conditionsCounter = 0;
+        
+        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " "  + $('#fput_0').val() : "") + 
+            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= "  + $('#fput_1').val() : "");
+        conditions[conditions.length] = [queried];
 
-        var conditions = [];
-        conditions[0] = ["Selected Conditions"] //headers
-        for (var i = 0; i <= selectedConditions.length; i++) 
+        var table = $("<table/>");
+        
+        $.each(conditions, function(rowIndex, r) 
         {
-            conditions[i + 1] = [selectedConditions[i]];
-        };
+            var row = $("<tr/>");
+            $.each(r, function(colIndex, c) 
+            { 
+                var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
+                cell.text(rowIndex == 0 ? c : r[colIndex]);
 
-        createTable($(".conditions"), conditions, 'conditions_table', false);
+                row.append(cell);
+            });
+            table.append(row);
+        });
+        $(".conditions").append(table);
     });
 });
 
@@ -63,8 +75,8 @@ function myFunction2()
     $("#conditions_popup").find(":input").remove();
 
     var form = $("<form/>");
-    var columns_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '30px');
-    var filter_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '250px');
+    var columns_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '30px').attr('id', 'col_drop');
+    var filter_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '250px').attr('id', 'filt_drop');
 
     var option = $("<option/>");
     columns_drop_down.append(option);
@@ -73,7 +85,7 @@ function myFunction2()
     { 
         var option = $("<option/>");
         option.text(columns[value]);
-        option.attr("value", value);
+        option.attr("value", columnNames[value]);
 
         option.click(function()
         {
@@ -98,27 +110,32 @@ function myFunction2()
 function createFilterDropDown(form, container, type)
 {
     var filters;
+    var operands;
     var field = "text";
-
+    
     switch(type) 
     {
         case "date":
             filters = ["", "On", "Before", "After", "Between"];
+            operands = ["", "=", "<", ">", "<="];
             field = "date";
             break;
         case "int":
         case "integer":
         case "numeric":
             filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
+            operands = ["", "=", "<", ">", ">="];
             break;
         case "string":
         case "text":
         case "varchar":
         case "character varying":
             filters = ["", "Contains", "Exactly"];
+            operands = ["", "like", "="];
             break;
         case "boolean":
             filters = ["", "Yes", "No"];
+            operands = ["", "is true", "is false"];
             break;
         default:
             break
@@ -128,7 +145,7 @@ function createFilterDropDown(form, container, type)
     { 
         var option = $("<option/>");
         option.text(value);
-        option.attr("value", index);
+        option.attr("value", operands[index]);
 
         option.click(function(){
             field_inputs = index == 4 ? 2 : (index == 0 ? 0 : 1);
@@ -142,6 +159,7 @@ function createFilterDropDown(form, container, type)
             {
                 if (type === 'boolean') continue;
                 var text_input = $("<input/>").css('marginRight', '30px');
+                text_input.attr("id", 'fput_' + i);
                 text_input.attr("type", field);
                 form.append(text_input);
                 conditionsCounter++;
@@ -182,7 +200,7 @@ function createTable(container, data, id, clicks)
                     if(colIndex == 0 || rowIndex == 0) return false;
                     selectedColumns.splice(rowIndex - 1 ,1);
                     selectedFields[cell.html()] = false;
-                                    populateTable(id);
+                    populateTable(id);
                 });
             }
             row.append(cell);
