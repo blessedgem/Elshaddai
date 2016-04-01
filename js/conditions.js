@@ -102,7 +102,7 @@ function createFilterDropDown(form, container, type)
             break;
         case "boolean":
             filters = ["", "Yes", "No"];
-            field = "checkbox";
+            field = "null";
             break;
         default:
             break
@@ -124,6 +124,7 @@ function createFilterDropDown(form, container, type)
             conditionsCounter = 0;
             for (var i = 0; i < field_inputs; i++) 
             {
+                if (type === 'boolean') continue;
                 var text_input = $("<input/>").css('marginRight', '30px');
                 text_input.attr("type", field);
                 form.append(text_input);
