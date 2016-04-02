@@ -29,7 +29,7 @@
 <li><a href="index.php">Home</a></li>
 
 
-<li class="dropdown">
+<!--li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="icon-th-large"></i> Database
         <b class="caret"></b>
@@ -39,7 +39,7 @@
         <li><a href="form.php">MySQL</a></li>
         <li><a href="sqform.php">Sqlite</a></li>
     </ul>
-</li>
+</li-->
 
 
 </li>
@@ -105,7 +105,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     $col="#F1F1F1";
     ?>
 
-<form class="form-horizontal" role="form" method="post" action="graph.php">
+<!--form class="form-horizontal" role="form" method="post" action="graph.php">
     <div class="row">
 <div class="span4">
         <label for="ip" class="col-sm-2 control-label">Add New</label>
@@ -123,45 +123,26 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 </div>
     
 </div>
-         <!--button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
+         <!button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
 <div class="form-group">
 <div class="col-sm-10 col-sm-offset-2">
             
 </div>
-</div-->
+</div>
 </div>
    
-</form>
+</form-->
 
-<form class="form-horizontal" role="form" method="post" action="conditions.php">
-    <div class="row">
-<div class="span4">
-        <label for="ip" class="col-sm-2 control-label">Conditions</label>
-        <div class="col-sm-10">
-             <select multiple name=columntype>
-            <?php
+
+
+<?php
         foreach($data[0] as $key => $colName) {
            
-            echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
+           // echo "<option value = ".$key.">". ucwords(str_replace("_", " ", $key)) ."</option> ";
             $columns[] = $key;
 
         }
     ?>  
-        </select> 
-</div>
-    
-        </div>
-         <button type = "submit" class = "btn btn-primary" style = "vertical-align:bottom;">Generate</button>
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <!--Will be used to display an alert to the user-->
-        </div>
-    </div>
-    </div>
-   
-</form>
-
-
 
 
 

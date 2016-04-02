@@ -42,7 +42,7 @@
                 <li><a href="index.php">Home</a></li>
 
 
-                
+                <li><a href="form.php">Database</a></li>
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-th-large"></i> Hadoop
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-<form class="form-horizontal" role="form" method="post" action="general2.php"> 
+<form class="form-horizontal" role="form" method="post" action="addJob.php"> 
     <!--form class="form-horizontal" role="form" method="post" action="general2.php"-->
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">User Name</label>

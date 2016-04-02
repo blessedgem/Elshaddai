@@ -46,7 +46,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="form.html">Export</a></li>
+                            <li><a href="exportForm.php">Export</a></li>
                             <li><a href="form.html">Import</a></li>
                         </ul>
                     </li>

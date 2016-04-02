@@ -24,6 +24,7 @@
 
 
 <li><a href="form.php">Database</a></li>
+<li><a href="form.php">View</a></li>
 
 
 </li>
