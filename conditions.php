@@ -87,6 +87,7 @@ $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 $columns = array();
 foreach($columnType as $key) {
     $columns[] = ucwords(str_replace("_", " ", $key['column_name']));
+    $columnNames[] = $key['column_name'];
     $dataTypes[] = $key['data_type'];
 }
 
@@ -97,11 +98,14 @@ $col="#F1F1F1";
 
 <script>
 
+    var conditions = [];
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
+    conditions[0] = ["Selected Conditions"];
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
+    var columnNames = <?php echo json_encode($columnNames); ?>;
 	
 </script>
  
