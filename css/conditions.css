@@ -156,7 +156,7 @@ tbody td, thead th {
 }
 
 #data_table td, #data_table th {
-    min-width: 100px;
+    min-width: 250px;
     height: 10px;
     /*border: dashed 1px lightblue;*/
 }
