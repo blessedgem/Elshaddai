@@ -148,6 +148,10 @@ tbody td, thead th {
     display: block;
 }
 
+#data_table thead {
+    background-color: #E3E3E3;
+}
+
 #data_table tbody {
     overflow-y: scroll;
     overflow-x: hidden;
