@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    createDataTable($(".anotherfield"), columns, actData, "data_table");
+        
     $(".close").click(function(){
         $(".mask").hide();
         $(".popup table").remove();
@@ -6,21 +8,21 @@ $(document).ready(function(){
         conditionsCounter = 0;
     });
 
-$("#accept_selection").click(function(){
-    $(".mask").hide();
-    $(".popup table").remove();
-    $(".popup").hide();
+    $("#accept_selection").click(function(){
+        $(".mask").hide();
+        $(".popup table").remove();
+        $(".popup").hide();
 
-    $(".selected table").remove();
+        $(".selected table").remove();
 
-    var selection = [];
-    selection[0] = ["Selected Columns"] //headers
-    for (var i = 0; i <= selectedColumns.length; i++) 
-    {
-        selection[i + 1] = [selectedColumns[i]];
-    };
+        var selection = [];
+        selection[0] = ["Selected Columns"];//headers
+        for (var i = 0; i <= selectedColumns.length; i++) 
+        {
+            selection[i + 1] = [selectedColumns[i]];
+        };
 
-    createTable($(".selected"), selection, 'selection_table', false);
+        createTable($(".selected"), selection, 'selection_table', false);
     });
     
     $("#accept_conditon").click(function(){
@@ -34,22 +36,7 @@ $("#accept_selection").click(function(){
         var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " "  + $('#fput_0').val() : "") + 
             ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= "  + $('#fput_1').val() : "");
         conditions[conditions.length] = [queried];
-
-        var table = $("<table/>");
-        
-        $.each(conditions, function(rowIndex, r) 
-        {
-            var row = $("<tr/>");
-            $.each(r, function(colIndex, c) 
-            { 
-                var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
-                cell.text(rowIndex == 0 ? c : r[colIndex]);
-
-                row.append(cell);
-            });
-            table.append(row);
-        });
-        $(".conditions").append(table);
+        createDataTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
     });
 });
 
@@ -221,4 +208,43 @@ function populateTable(id)
 }
 
 
+function createDataTable(container, header, data, id) 
+{
+    var table = $("<table/>");
+    
+    table.attr('id', id);
+    table.addClass('table table-bordered');
+    
+    var head = $("<thead/>");
+    var body = $("<tbody/>");
+    
+    var row = $("<tr/>");
+    $.each(header, function(colIndex, c) 
+    { 
+        var cell = $("<th/>");
+        cell.text(c);
 
+        row.append(cell);
+    });
+    head.append(row);
+        
+    $.each(data, function(rowIndex, r) 
+    {
+        var row = $("<tr/>");
+        $.each(r, function(colIndex, c) 
+        { 
+            var cell = $("<td/>");
+            cell.text(r[colIndex]);
+
+            row.append(cell);
+        });
+        body.append(row);
+    });
+    
+    table.append(head);
+    table.append(body);
+    table.on('scroll', function () {
+        $("table > *").width(table.width() + table.scrollLeft());
+    });
+    return container.append(table);
+}
