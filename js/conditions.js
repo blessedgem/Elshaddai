@@ -104,25 +104,25 @@ function createFilterDropDown(form, container, type)
     {
         case "date":
             filters = ["", "On", "Before", "After", "Between"];
-            operands = ["", "=", "<", ">", "<="];
+            operands = ["is null", "=", "<", ">", "<="];
             field = "date";
             break;
         case "int":
         case "integer":
         case "numeric":
             filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
-            operands = ["", "=", "<", ">", ">="];
+            operands = ["is null", "=", "<", ">", ">="];
             break;
         case "string":
         case "text":
         case "varchar":
         case "character varying":
             filters = ["", "Contains", "Exactly"];
-            operands = ["", "like", "="];
+            operands = ["is null", "like", "="];
             break;
         case "boolean":
             filters = ["", "Yes", "No"];
-            operands = ["", "is true", "is false"];
+            operands = ["is null", "is true", "is false"];
             break;
         default:
             break
