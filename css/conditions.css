@@ -108,8 +108,8 @@
     z-index: 999999;
 }
 
-#popup_table td:hover{
-        background-color: #E1E1E1;
+#popup_table td:hover {
+    background-color: #E1E1E1;
 }
 
 #popup_table {
@@ -119,14 +119,10 @@
     /*border: 2px solid black;*/
 }
 
-#popup_table tbody,
-#popup_table thead { display: block; }
-
-thead tr th { 
-    height: 30px;
-    line-height: 30px;
-    /*text-align: left;*/
+#popup_table tbody, #popup_table thead { 
+    display: block; 
 }
+
 
 #popup_table tbody {
     height: 50vh;
@@ -138,6 +134,38 @@ tbody td, thead th {
     width: 20%; /* Optional */
 }
 
+#data_table {
+    width: 100%; /* Optional */
+    height: 100%;
+    display: block;
+    border-spacing: 0;
+    overflow-x: scroll;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+#data_table thead, #data_table tbody {
+    display: block;
+}
+
+#data_table tbody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%; /* Optional */
+    height: 85%;
+}
+
+#data_table td, #data_table th {
+    min-width: 100px;
+    height: 10px;
+    /*border: dashed 1px lightblue;*/
+}
+
+#data_table tr:hover {
+    background-color: #E1E1E1;
+}
+
 tbody td:last-child, thead th:last-child {
     border-right: none;
+    border-bottom: none;
 }
