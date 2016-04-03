@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    createDataTable($(".anotherfield"), columns, actData, "data_table");
+    createDataTable($(".anotherfield"), columnNames, actData, "data_table");
         
     $(".close").click(function(){
         $(".mask").hide();
