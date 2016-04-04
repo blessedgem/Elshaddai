@@ -207,7 +207,6 @@ function populateTable(id)
     });	
 }
 
-
 function createDataTable(container, header, data, id) 
 {
     var table = $("<table/>");
@@ -235,7 +234,7 @@ function createDataTable(container, header, data, id)
         { 
             var cell = $("<td/>");
             cell.text(r[colIndex]);
-
+            
             row.append(cell);
         });
         body.append(row);
@@ -247,4 +246,46 @@ function createDataTable(container, header, data, id)
         $("table > *").width(table.width() + table.scrollLeft());
     });
     return container.append(table);
+}
+
+function generateFunction()
+{
+    
+    if(selectedColumns == '')
+    {
+        alert('No Conditions or Columns set');
+        throw new Error("Something went badly wrong!");
+    }
+    
+    var cols = "";
+    var colNames = [];
+    
+    for (var key in selectedColumns)
+    {
+        cols = key == 0 ? cols : cols + ", ";
+        cols = cols + columnNames[selectedColumns[key]];
+        colNames.push(columnNames[selectedColumns[key]]);
+    }
+    
+    $.ajax({
+        type: "POST",
+        data: {
+            cols: cols,
+            host: dbHost,
+            password: dbPass,
+            username: dbUser,
+            databasename: db,
+            tablename: dbTable,
+            databasetype: dbType,
+        },
+        url: "database.php",
+        dataType: "html",
+        async: false,
+        success: function(data) {
+            result = data;
+            $(".anotherfield table").remove();
+            createDataTable($(".anotherfield"), colNames, JSON.parse(result), "data_table");
+        }
+    });
+       
 }
