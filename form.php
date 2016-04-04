@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-<form class="form-horizontal" role="form" method="post" action="general2.php"> 
+<form class="form-horizontal" role="form" method="post" action="conditions.php"> 
     <!--form class="form-horizontal" role="form" method="post" action="general2.php"-->
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">User Name</label>

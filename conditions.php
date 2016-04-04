@@ -132,6 +132,9 @@ foreach($columnType as $key) {
     <div class="conditions">
 
     </div>
+    <button class="button1" onclick="generateFunction">
+    <img src="img/add2.jpeg" alt="Generate" width="10" height="10" /> 
+</button> 
 </div>
 
 <!--Div contains where other activities are displayed -->
