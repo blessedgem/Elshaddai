@@ -99,6 +99,14 @@ foreach($columnType as $key) {
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
+    
+    var db = <?php echo json_encode($database); ?>;
+    var dbHost = <?php echo json_encode($host); ?>;
+    var dbType = <?php echo json_encode($temp); ?>;
+    var dbUser = <?php echo json_encode($username); ?>;
+    var dbPass = <?php echo json_encode($password); ?>;
+    var dbTable = <?php echo json_encode($tablename); ?>;
+    
     var actData = <?php echo json_encode($data); ?>;
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
@@ -132,7 +140,7 @@ foreach($columnType as $key) {
     <div class="conditions">
 
     </div>
-    <button class="button1" onclick="generateFunction">
+    <button class="button1" onclick="generateFunction()">
     <img src="img/add2.jpeg" alt="Generate" width="10" height="10" /> 
 </button> 
 </div>
