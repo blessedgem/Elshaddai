@@ -77,7 +77,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     )
 );
 //Make the query
-$data = $atiaa->query("SELECT * FROM $tablename limit 10");
+$data = $atiaa->query("SELECT * FROM $tablename limit 20");
 $columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
 
 $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
@@ -91,9 +91,6 @@ foreach($columnType as $key) {
     $dataTypes[] = $key['data_type'];
 }
 
-//$eliminatedFields = array("user_id","bank_name","description");
-
-$col="#F1F1F1";
 ?>
 
 <script>
@@ -102,11 +99,11 @@ $col="#F1F1F1";
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
-    conditions[0] = ["Selected Conditions"];
+    var actData = <?php echo json_encode($data); ?>;
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
     var columnNames = <?php echo json_encode($columnNames); ?>;
-	
+    
 </script>
  
 <!-- Where the page division goes-->
@@ -139,20 +136,7 @@ $col="#F1F1F1";
 
 <!--Div contains where other activities are displayed -->
 <div class="anotherfield">
-	<?php
-	foreach($data as $row){
-    echo '<tr>';
 
-    foreach($columns as $col) {
-        echo '<td>'.$row[$col].'</td>';
-    }
-    echo '</tr>';
-
-   } 
-
-   echo "</table>";
-   echo "</div>";    
-	?>
 </div>
 
 <div class="mask" id="mask_all"></div>
