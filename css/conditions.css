@@ -209,6 +209,10 @@
     border: none;
 }
 
+tbody td, thead th {
+    width: 20%; /* Optional */
+}
+
 tbody td:last-child, thead th:last-child {
     border-right: none;
     border-bottom: none;
