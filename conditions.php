@@ -123,7 +123,7 @@ foreach($columnType as $key) {
 
  
 <button id="button" onclick="myFunction()">
-    <img src="img/add2.jpeg" alt="Select Column" width="10" height="10" /> 
+    <img src="img/add2.jpeg" alt="Select Columns" width="10" height="10" /> 
 </button>	
 
 
