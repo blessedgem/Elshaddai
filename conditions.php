@@ -96,6 +96,7 @@ foreach($columnType as $key) {
 <script>
 
     var conditions = [];
+    var selectedCols = [];
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
@@ -127,7 +128,7 @@ foreach($columnType as $key) {
 
 
 <button class="button1" onclick="myFunction2()">
-    <img src="img/add2.jpeg" alt="Set Condition" width="10" height="10" /> 
+    <img src="img/add2.jpeg" alt="Add Condition" width="10" height="10" /> 
 </button>	
 </div>
 
