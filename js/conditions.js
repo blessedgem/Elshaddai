@@ -250,7 +250,6 @@ function createDataTable(container, header, data, id)
 
 function generateFunction()
 {
-    
     if(selectedColumns == '' && conditions == '')
     {
         alert('No Conditions or Columns set');
