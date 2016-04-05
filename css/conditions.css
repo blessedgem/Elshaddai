@@ -165,7 +165,7 @@ tbody td, thead th {
     /*border: dashed 1px lightblue;*/
 }
 
-#data_table tr:hover {
+#data_table tr:hover, #conditions_table tr:hover {
     background-color: #E1E1E1;
 }
 
