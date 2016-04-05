@@ -33,8 +33,8 @@ $(document).ready(function(){
         $(".conditions table").remove();
         conditionsCounter = 0;
         
-        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " "  + $('#fput_0').val() : "") + 
-            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= "  + $('#fput_1').val() : "");
+        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " " + $('#fput_0').val() : "") + 
+            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= " + $('#fput_1').val() : "");
         conditions[conditions.length] = [queried];
         createDataTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
     });
@@ -251,13 +251,14 @@ function createDataTable(container, header, data, id)
 function generateFunction()
 {
     
-    if(selectedColumns == '')
+    if(selectedColumns == '' && conditions == '')
     {
         alert('No Conditions or Columns set');
         throw new Error("Something went badly wrong!");
     }
     
     var cols = "";
+    var cond = "";
     var colNames = [];
     
     for (var key in selectedColumns)
@@ -267,10 +268,17 @@ function generateFunction()
         colNames.push(columnNames[selectedColumns[key]]);
     }
     
+    for (var key in conditions)
+    {
+        cond = key == 0 ? cond : cond + " and ";
+        cond = cond + conditions[key];
+    }
+    
     $.ajax({
         type: "POST",
         data: {
             cols: cols,
+            where: cond,
             host: dbHost,
             password: dbPass,
             username: dbUser,
