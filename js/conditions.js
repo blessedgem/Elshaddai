@@ -228,6 +228,13 @@ function manuplateTable(id, cell, clicks, rowIndex, colIndex, colVal)
         selectedFields[cell.html()] = false;
         populateTable(id, selectedColumns);
     };
+    
+    if(clicks === 2 && id === 'conditions_table')
+    {
+        conditions.splice(rowIndex , 1);
+        $(".conditions table").remove();
+        createTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
+    }
 }
 
 function populateTable(id, data)
@@ -254,8 +261,8 @@ function generateFunction()
     for (var key in selectedColumns)
     {
         cols = key == 0 ? cols : cols + ", ";
-        cols = cols + selectedColumns[key];
-        colNames.push(columnNames[selectedCols[key]]);
+        cols = cols + columnNames[selectedCols[key]];
+        colNames.push(selectedColumns[key]);
     }
     
     for (var key in conditions)
@@ -282,7 +289,7 @@ function generateFunction()
         success: function(data) {
             result = data;
             $(".anotherfield table").remove();
-            createTable($(".anotherfield"), colNames, JSON.parse(result), "data_table");
+            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table");
         }
     });
 }
