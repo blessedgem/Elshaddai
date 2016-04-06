@@ -25,6 +25,13 @@ $(document).ready(function(){
     });
     
     $("#accept_conditon").click(function(){
+        
+        if(!$('#col_drop').val() || ($('#filt_drop').val() != '' && $('#fput_0').val() == '') || (($('#filt_drop').val() === '>=' && !$('#fput_1').val()))) 
+        {
+            alert('seriously?');
+            throw new Error("Something went badly wrong!");
+        } 
+        
         $(".mask").hide();
         $(".popup table").remove();
         $(".popup").hide();
@@ -102,7 +109,7 @@ function createFilterDropDown(form, container, type)
     {
         case "date":
             filters = ["", "On", "Before", "After", "Between"];
-            operands = ["is null", "=", "<", ">", "<="];
+            operands = ["is null", "=", "<", ">", ">="];
             field = "date";
             break;
         case "int":
@@ -199,7 +206,8 @@ function createTable(container, header, data, id)
     table.append(head);
     table.append(body);
     table.on('scroll', function () {
-        $("table > *").width(table.width() + table.scrollLeft());
+//        $("table > *").width(table.width() + table.scrollLeft());
+        $('#' + id + ' > *').width(table.width() + table.scrollLeft());
     });
     return container.append(table);
 }
