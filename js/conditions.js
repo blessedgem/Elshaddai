@@ -263,7 +263,7 @@ function generateFunction()
     {
         cols = key == 0 ? cols : cols + ", ";
         cols = cols + columnNames[selectedCols[key]];
-        colNames.push(selectedColumns[key]);
+        colNames.push(columnNames[selectedCols[key]]);
     }
     
     for (var key in conditions)
