@@ -206,7 +206,6 @@ function createTable(container, header, data, id)
     table.append(head);
     table.append(body);
     table.on('scroll', function () {
-//        $("table > *").width(table.width() + table.scrollLeft());
         $('#' + id + ' > *').width(table.width() + table.scrollLeft());
     });
     return container.append(table);
@@ -257,12 +256,6 @@ function populateTable(id, data)
 
 function generateFunction()
 {
-    if(selectedColumns == '' && conditions == '')
-    {
-        alert('No Conditions or Columns set');
-        throw new Error("Something went badly wrong!");
-    }
-    
     var cols = "";
     var cond = "";
     var colNames = [];
