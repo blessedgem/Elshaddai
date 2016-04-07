@@ -4,20 +4,17 @@
     margin-left: 0.5%;
     width: 99%;
     height: auto;
-    text-align: center;
+    text-align: left;
     border-radius: 10px;
 }
 
-.formdiv .left{
-    text-align: left;
-}
-
-.formdiv .right{
-    text-align: right;
+.formdiv .button1{
+ 
+    float: right;
 }
 
 .button3{
-    margin-top: 1%;
+    margin-top: 0.8%;
 }
 
 .selecteddiv{
