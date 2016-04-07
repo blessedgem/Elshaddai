@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    createTable($(".anotherfield"), columnNames, actData, "data_table");
+    generateFunction();
         
     $(".close").click(function(){
         $(".mask").hide();
@@ -289,8 +289,13 @@ function generateFunction()
         async: false,
         success: function(data) {
             result = data;
-            $(".anotherfield table").remove();
+            $(".anotherfield").html('');
             createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table");
+            
+            $('#data_table').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [[7, 10, 15], [7, 10, 15]]
+            });
         }
     });
 }
