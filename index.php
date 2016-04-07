@@ -35,8 +35,8 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="form.php">Export</a></li>
-        <li><a href="form.php">Import</a></li>
+        <li><a href="sqoopForm.php">Export To Hadoop</a></li>
+        <li><a href="tableImportForm.php">Import </a></li>
         
     </ul>
 </li>

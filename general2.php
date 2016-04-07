@@ -193,6 +193,7 @@ if (isset($_POST["connect"])) {
         // Check if name has been entered
         if (!$_POST['username']) {
             $errName = 'Please enter your name';
+            echo $errName;
         }
         
         // Check if email has been entered and is valid

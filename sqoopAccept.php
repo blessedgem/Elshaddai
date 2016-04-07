@@ -26,18 +26,27 @@
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Home</a></li>
 
-                     <li><a href="index.php">Database</a></li>
-
-                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-th-large"></i> Database
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="form.html">Postgres</a></li>
+                            <li><a href="form.html">MySQL</a></li>
+                            <li><a href="sqform.html">Sqlite</a></li>
+                        </ul>
+                    </li>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-th-large"></i> Hadoop
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="tableExportForm.php">Export To Hadoop</a></li>
+                            <li><a href="exportForm.php">Export</a></li>
                             <li><a href="form.html">Import</a></li>
                         </ul>
                     </li>
@@ -90,14 +99,6 @@ foreach($columnType as $key) {
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
-    
-    var db = <?php echo json_encode($database); ?>;
-    var dbHost = <?php echo json_encode($host); ?>;
-    var dbType = <?php echo json_encode($temp); ?>;
-    var dbUser = <?php echo json_encode($username); ?>;
-    var dbPass = <?php echo json_encode($password); ?>;
-    var dbTable = <?php echo json_encode($tablename); ?>;
-    
     var actData = <?php echo json_encode($data); ?>;
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
@@ -131,7 +132,7 @@ foreach($columnType as $key) {
     <div class="conditions">
 
     </div>
-    <button class="button1" onclick="generateFunction()">
+    <button class="button1" onclick="generateFunction">
     <img src="img/add2.jpeg" alt="Generate" width="10" height="10" /> 
 </button> 
 </div>

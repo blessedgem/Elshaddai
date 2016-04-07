@@ -49,7 +49,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="form.php">Export</a></li>
+                            <li><a href="sqoopForm.php">Export To Hadoop</a></li>
                             <li><a href="form.php">Import</a></li>
                             
                         </ul>
@@ -67,7 +67,19 @@
                 <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
             </div>
         </div>
-    
+    <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Database Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Table Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="tablename" name="tablename" placeholder="TBName" value="">
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Password</label>
@@ -89,36 +101,10 @@
              <select  name=databasetype>
                 <option value="postgresql">Postgresql</option>
                 <option value="mysql">Mysql</option>
-                <option value="sqlite">Sqlite</option>
-            </select> 
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Operation</label>
-        <div class="col-sm-10">
-             <select  name=databasetype>
-                <option value="postgresql">Load Databases</option>
-                <option value="mysql">Load Table</option>
                 
             </select> 
         </div>
     </div>
-
-    <!--div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Database Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
-                </div>
-    </div>
-
-    <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Table Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="tablename" name="tablename" placeholder="TBName" value="">
-        </div>
-    </div-->
 
 
     <button type = "submit" class = "btn btn-primary">Connect</button>
