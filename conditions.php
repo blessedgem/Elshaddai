@@ -5,6 +5,7 @@
     <title>GemSoft</title>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/conditions.css" type="text/css">
 
     <meta charset='utf-8'>
@@ -12,7 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/conditions.js"></script>
 </head>
@@ -68,12 +70,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     )
 );
 //Make the query
-$data = $atiaa->query("SELECT * FROM $tablename limit 20");
 $columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
-
-$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
-$page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
-$links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 
 $columns = array();
 foreach($columnType as $key) {
@@ -87,6 +84,7 @@ foreach($columnType as $key) {
 <script>
 
     var conditions = [];
+    var selectedCols = [];
     var selectedFields = {};
     var selectedColumns = [];
     var conditionsCounter = 0;
@@ -98,7 +96,6 @@ foreach($columnType as $key) {
     var dbPass = <?php echo json_encode($password); ?>;
     var dbTable = <?php echo json_encode($tablename); ?>;
     
-    var actData = <?php echo json_encode($data); ?>;
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
     var columnNames = <?php echo json_encode($columnNames); ?>;
@@ -113,12 +110,12 @@ foreach($columnType as $key) {
 
  
 <button id="button" onclick="myFunction()">
-    <img src="img/add2.jpeg" alt="Select Column" width="10" height="10" /> 
+    <img src="img/add2.jpeg" alt="Select Columns" width="10" height="10" /> 
 </button>	
 
 
 <button class="button1" onclick="myFunction2()">
-    <img src="img/add2.jpeg" alt="Set Condition" width="10" height="10" /> 
+    <img src="img/add2.jpeg" alt="Add Condition" width="10" height="10" /> 
 </button>	
 </div>
 

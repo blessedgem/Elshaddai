@@ -114,24 +114,32 @@
 
 #popup_table {
     width: 100%; /* Optional */
-    /* border-collapse: collapse; */
     border-spacing: 0;
-    /*border: 2px solid black;*/
 }
 
 #popup_table tbody, #popup_table thead { 
     display: block; 
 }
 
+#popup_table thead { 
+    height: 4vh;
+    background-color: #E3E3E3;
+    border: none;
+}
 
 #popup_table tbody {
-    height: 50vh;
+    height: 46vh;
     overflow-y: auto;
     overflow-x: auto;
 }
 
-tbody td, thead th {
-    width: 20%; /* Optional */
+#popup_table tbody td, #popup_table thead th {
+    min-width: 100px; 
+    width: 1%;
+}
+
+#popup_table thead th{
+    border: none;
 }
 
 #data_table {
@@ -141,11 +149,6 @@ tbody td, thead th {
     border-spacing: 0;
     overflow-x: scroll;
     border: 2px solid black;
-    border-collapse: collapse;
-}
-
-#data_table thead, #data_table tbody {
-    display: block;
 }
 
 #data_table thead {
@@ -161,12 +164,46 @@ tbody td, thead th {
 
 #data_table td, #data_table th {
     min-width: 250px;
-    height: 10px;
-    /*border: dashed 1px lightblue;*/
 }
 
-#data_table tr:hover {
+#data_table tr:hover, #conditions_table tr:hover, #selection_table tr:hover, #popup_table thead tr:hover {
     background-color: #E1E1E1;
+}
+
+#selection_table, #conditions_table {
+    width: 100%; /* Optional */
+    border-spacing: 0;
+}
+
+#selection_table thead, #selection_table tbody,
+#conditions_table thead, #conditions_table tbody { 
+    display: block; 
+}
+
+#selection_table thead, #conditions_table thead{ 
+    height: 30px;
+    background-color: #E3E3E3;
+    border: none;
+}
+
+#selection_table tbody, #conditions_table tbody{
+    height: 365px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+#selection_table tbody td, #selection_table thead th,
+#conditions_table tbody td, #conditions_table thead th {
+    min-width: 100px; 
+    width: 1%;
+}
+
+#selection_table thead th, #conditions_table thead th {
+    border: none;
+}
+
+tbody td, thead th {
+    width: 20%; /* Optional */
 }
 
 tbody td:last-child, thead th:last-child {

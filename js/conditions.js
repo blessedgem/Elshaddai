@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    createDataTable($(".anotherfield"), columnNames, actData, "data_table");
+    generateFunction();
         
     $(".close").click(function(){
         $(".mask").hide();
@@ -16,16 +16,22 @@ $(document).ready(function(){
         $(".selected table").remove();
 
         var selection = [];
-        selection[0] = ["Selected Columns"];//headers
         for (var i = 0; i <= selectedColumns.length; i++) 
         {
-            selection[i + 1] = [selectedColumns[i]];
+            selection[i] = [selectedColumns[i]];
         };
 
-        createTable($(".selected"), selection, 'selection_table', false);
+        createTable($(".selected"), ["Selected Columns"], selection, 'selection_table');
     });
     
     $("#accept_conditon").click(function(){
+        
+        if(!$('#col_drop').val() || ($('#filt_drop').val() != '' && $('#fput_0').val() == '') || (($('#filt_drop').val() === '>=' && !$('#fput_1').val()))) 
+        {
+            alert('seriously?');
+            throw new Error("Something went badly wrong!");
+        } 
+        
         $(".mask").hide();
         $(".popup table").remove();
         $(".popup").hide();
@@ -33,10 +39,10 @@ $(document).ready(function(){
         $(".conditions table").remove();
         conditionsCounter = 0;
         
-        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " "  + $('#fput_0').val() : "") + 
-            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= "  + $('#fput_1').val() : "");
+        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " " + $('#fput_0').val() : "") + 
+            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= " + $('#fput_1').val() : "");
         conditions[conditions.length] = [queried];
-        createDataTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
+        createTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
     });
 });
 
@@ -46,13 +52,12 @@ function myFunction()
     $("#selection_popup").slideToggle("slow");
 
     data = [];
-    data[0] = ["Available Columns", "Selected Columns"] //headers
     for (var i = 0; i <= columns.length; i++) 
     {
-        data[i + 1] = [i, selectedColumns[i]];
+        data[i] = [columns[i], selectedColumns[i]];
     };
 
-    createTable($("#selection_popup"), data, "popup_table", true);
+    createTable($("#selection_popup"), ["Available Columns", "Selected Columns"], data, "popup_table");
 }
 
 function myFunction2() 
@@ -68,11 +73,11 @@ function myFunction2()
     var option = $("<option/>");
     columns_drop_down.append(option);
 
-    $.each(selectedColumns, function(index, value)
+    $.each(columnNames, function(index, value)
     { 
         var option = $("<option/>");
-        option.text(columns[value]);
-        option.attr("value", columnNames[value]);
+        option.text(columns[index]);
+        option.attr("value", value);
 
         option.click(function()
         {
@@ -82,7 +87,7 @@ function myFunction2()
                 form.find(":last").remove();
             }
             conditionsCounter = 0;
-            createFilterDropDown(form, filter_drop_down, dataTypes[value]);
+            createFilterDropDown(form, filter_drop_down, dataTypes[index]);
         });
 
         columns_drop_down.append(option);
@@ -104,7 +109,7 @@ function createFilterDropDown(form, container, type)
     {
         case "date":
             filters = ["", "On", "Before", "After", "Between"];
-            operands = ["is null", "=", "<", ">", "<="];
+            operands = ["is null", "=", "<", ">", ">="];
             field = "date";
             break;
         case "int":
@@ -157,57 +162,7 @@ function createFilterDropDown(form, container, type)
     });
 }
 
-function createTable(container, data, id, clicks) 
-{
-    var table = $("<table/>")
-    clicks ? table.addClass('table table-bordered') : null;
-    table.attr('id', id);
-    $.each(data, function(rowIndex, r) 
-    {
-        var row = $("<tr/>");
-        $.each(r, function(colIndex, c) 
-        { 
-            var cell = rowIndex == 0 ? $("<th/>") : $("<td/>");
-            cell.text(rowIndex == 0 ? c : columns[c]);
-
-            if(clicks)
-            {
-                cell.click(function(){
-                    if(colIndex == 1 || rowIndex == 0) return false;
-                    if(selectedFields[cell.html()])
-                    {
-                        alert(cell.html() + ' already selected');
-                        return false;
-                    } 
-                    selectedFields[cell.html()] = true;
-                    selectedColumns.push(c);
-                    populateTable(id);
-                });
-                cell.dblclick(function(){
-                    if(colIndex == 0 || rowIndex == 0) return false;
-                    selectedColumns.splice(rowIndex - 1 ,1);
-                    selectedFields[cell.html()] = false;
-                    populateTable(id);
-                });
-            }
-            row.append(cell);
-        });
-        table.append(row);
-    });
-    return container.append(table);
-}
-
-function populateTable(id)
-{
-    var count = 0;
-    $('#' + id + ' td').each(function(index, value) {
-        if(index % 2 != 1) return true;
-        $(this).html(' ');
-        $(this).html(columns[selectedColumns[count++]]);
-    });	
-}
-
-function createDataTable(container, header, data, id) 
+function createTable(container, header, data, id) 
 {
     var table = $("<table/>");
     
@@ -235,6 +190,14 @@ function createDataTable(container, header, data, id)
             var cell = $("<td/>");
             cell.text(r[colIndex]);
             
+            cell.click(function(){
+                manuplateTable(id, cell, 1, rowIndex, colIndex, c);
+            });
+            
+            cell.dblclick(function(){
+                manuplateTable(id, cell, 2, rowIndex, colIndex, c);
+            });
+            
             row.append(cell);
         });
         body.append(row);
@@ -243,34 +206,77 @@ function createDataTable(container, header, data, id)
     table.append(head);
     table.append(body);
     table.on('scroll', function () {
-        $("table > *").width(table.width() + table.scrollLeft());
+        $('#' + id + ' > *').width(table.width() + table.scrollLeft());
     });
     return container.append(table);
 }
 
-function generateFunction()
+function manuplateTable(id, cell, clicks, rowIndex, colIndex, colVal)
 {
-    
-    if(selectedColumns == '')
+    if(clicks === 1 && id === 'popup_table')
     {
-        alert('No Conditions or Columns set');
-        throw new Error("Something went badly wrong!");
+        if(colIndex === 1) return false;
+        if(selectedFields[cell.html()])
+        {
+            alert(cell.html() + ' already selected');
+            return false;
+        } 
+        selectedFields[cell.html()] = true;
+        selectedCols.push(rowIndex);
+        selectedColumns.push(colVal);
+        populateTable(id, selectedColumns);
     }
     
-    var cols = "";
-    var colNames = [];
+    if(clicks === 2 && id === 'popup_table')
+    {
+        if(colIndex === 0) return false;
+        selectedCols.splice(rowIndex , 1);
+        selectedColumns.splice(rowIndex , 1);
+        selectedFields[cell.html()] = false;
+        populateTable(id, selectedColumns);
+    };
     
+    if(clicks === 2 && id === 'conditions_table')
+    {
+        conditions.splice(rowIndex , 1);
+        $(".conditions table").remove();
+        createTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
+    }
+}
+
+function populateTable(id, data)
+{
+    var count = 0;
+    $('#' + id + ' td').each(function(index, value) {
+        if(index % 2 != 1) return true;
+        $(this).html('');
+        $(this).html(data[count++]);
+    });	
+}
+
+function generateFunction()
+{
+    var cols = "";
+    var cond = "";
+    var colNames = [];
     for (var key in selectedColumns)
     {
         cols = key == 0 ? cols : cols + ", ";
-        cols = cols + columnNames[selectedColumns[key]];
-        colNames.push(columnNames[selectedColumns[key]]);
+        cols = cols + columnNames[selectedCols[key]];
+        colNames.push(columnNames[selectedCols[key]]);
+    }
+    
+    for (var key in conditions)
+    {
+        cond = key == 0 ? cond : cond + " and ";
+        cond = cond + conditions[key];
     }
     
     $.ajax({
         type: "POST",
         data: {
             cols: cols,
+            where: cond,
             host: dbHost,
             password: dbPass,
             username: dbUser,
@@ -283,9 +289,13 @@ function generateFunction()
         async: false,
         success: function(data) {
             result = data;
-            $(".anotherfield table").remove();
-            createDataTable($(".anotherfield"), colNames, JSON.parse(result), "data_table");
+            $(".anotherfield").html('');
+            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table");
+            
+            $('#data_table').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [[7, 10, 15], [7, 10, 15]]
+            });
         }
     });
-       
 }

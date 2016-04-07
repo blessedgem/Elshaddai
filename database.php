@@ -2,16 +2,17 @@
 
 require "vendor/autoload.php";
 
-//A library I borrowed from a friend for connection
 $atiaa = \ntentan\atiaa\Driver::getConnection(
     array(
         'driver' => $_POST['databasetype'],
-        'user' => $_POST['username'],
         'dbname' => $_POST['databasename'],
+        'password'=> $_POST['password'],
+        'user' => $_POST['username'],
         'host'=> $_POST['host'],
-        'password'=> $_POST['password']
     )
 );
 
-$result = $atiaa->query("SELECT {$_POST['cols']} FROM {$_POST['tablename']}");
+$columns = $_POST['cols'] ? $_POST['cols'] : "*";
+$conditions = $_POST['where'] ? " where " . $_POST['where'] : "";
+$result = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions");
 echo json_encode($result);
