@@ -1,6 +1,6 @@
 $(document).ready(function(){
     generateFunction();
-        
+    
     $(".close").click(function(){
         $(".mask").hide();
         $(".popup table").remove();
@@ -162,7 +162,7 @@ function createFilterDropDown(form, container, type)
     });
 }
 
-function createTable(container, header, data, id) 
+function createTable(container, header, data, id, footer) 
 {
     var table = $("<table/>");
     
@@ -205,6 +205,20 @@ function createTable(container, header, data, id)
     
     table.append(head);
     table.append(body);
+    
+    if(footer === true)
+    {
+        var foot = $("<tfoot/>");
+        var row = $("<tr/>");
+        $.each(header, function(colIndex, c) 
+        { 
+            var cell = $("<th/>");
+            row.append(cell);
+        });
+        foot.append(row);
+        table.append(foot);
+    }
+    
     table.on('scroll', function () {
         $('#' + id + ' > *').width(table.width() + table.scrollLeft());
     });
@@ -290,11 +304,26 @@ function generateFunction()
         success: function(data) {
             result = data;
             $(".anotherfield").html('');
-            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table");
+            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table", true);
             
             $('#data_table').DataTable({
                 "pagingType": "full_numbers",
-                "lengthMenu": [[7, 10, 15], [7, 10, 15]]
+                "lengthMenu": [[5, 10, 15], [5, 10, 15]]
+            });
+            
+            $('#data_table tfoot th').each(function(){
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            });
+
+            var table = $('#data_table').DataTable();
+            table.columns().every( function (){
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change', function (){
+                    if ( that.search() !== this.value ){
+                        that.search( this.value ).draw();
+                    }
+                });
             });
         }
     });
