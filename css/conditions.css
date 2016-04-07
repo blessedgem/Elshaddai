@@ -1,11 +1,23 @@
 .formdiv {
     background-color: #efefef;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-left: 0.5%;
-    width: 39%;
+    width: 99%;
     height: auto;
     text-align: center;
     border-radius: 10px;
+}
+
+.formdiv .left{
+    text-align: left;
+}
+
+.formdiv .right{
+    text-align: right;
+}
+
+.button3{
+    margin-top: 1%;
 }
 
 .selecteddiv{

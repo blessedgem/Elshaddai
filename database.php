@@ -14,5 +14,5 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 
 $columns = $_POST['cols'] ? $_POST['cols'] : "*";
 $conditions = $_POST['where'] ? " where " . $_POST['where'] : "";
-$result = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions");
+$result = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions limit 100");
 echo json_encode($result);

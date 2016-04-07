@@ -108,15 +108,26 @@ foreach($columnType as $key) {
 
 <div class="formdiv">
 
- 
-<button id="button" onclick="myFunction()">
+<div class="left">
+    <button id="button" onclick="myFunction()">
     <img src="img/add2.jpeg" alt="Select Columns" width="10" height="10" /> 
-</button>	
+</button>   
 
 
 <button class="button1" onclick="myFunction2()">
     <img src="img/add2.jpeg" alt="Add Condition" width="10" height="10" /> 
-</button>	
+</button>
+</div>
+	
+<div class="right"></div>
+<button id="button" onclick="myFunction()">
+    <img src="img/add2.jpeg" alt="View Graph" width="10" height="10" /> 
+</button>   
+
+
+<button class="button1" onclick="myFunction2()">
+    <img src="img/add2.jpeg" alt="Export" width="10" height="10" /> 
+</button>   
 </div>
 
 <!--Div contains where the selected columns are displayed -->
@@ -128,15 +139,19 @@ foreach($columnType as $key) {
     <div class="conditions">
 
     </div>
-    <button class="button1" onclick="generateFunction()">
+    <button class="button3" onclick="generateFunction()">
     <img src="img/add2.jpeg" alt="Generate" width="10" height="10" /> 
 </button> 
 </div>
 
 <!--Div contains where other activities are displayed -->
+
+
+
 <div class="anotherfield">
 
 </div>
+
 
 <div class="mask" id="mask_all"></div>
 
