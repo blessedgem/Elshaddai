@@ -149,11 +149,6 @@
     border-spacing: 0;
     overflow-x: scroll;
     border: 2px solid black;
-    border-collapse: collapse;
-}
-
-#data_table thead, #data_table tbody {
-    display: block;
 }
 
 #data_table thead {
@@ -169,8 +164,6 @@
 
 #data_table td, #data_table th {
     min-width: 250px;
-    height: 10px;
-    /*border: dashed 1px lightblue;*/
 }
 
 #data_table tr:hover, #conditions_table tr:hover, #selection_table tr:hover, #popup_table thead tr:hover {
