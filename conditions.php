@@ -79,12 +79,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     )
 );
 //Make the query
-$data = $atiaa->query("SELECT * FROM $tablename");
 $columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
-
-$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
-$page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
-$links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 
 $columns = array();
 foreach($columnType as $key) {
@@ -110,7 +105,6 @@ foreach($columnType as $key) {
     var dbPass = <?php echo json_encode($password); ?>;
     var dbTable = <?php echo json_encode($tablename); ?>;
     
-    var actData = <?php echo json_encode($data); ?>;
     var columns = <?php echo json_encode($columns); ?>;
     var dataTypes = <?php echo json_encode($dataTypes); ?>;
     var columnNames = <?php echo json_encode($columnNames); ?>;
