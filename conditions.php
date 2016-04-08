@@ -118,12 +118,12 @@ foreach($columnType as $key) {
 </button>
 
 <div class="button1">
-    <button id="button" onclick="myFunction()">
+    <button id="button" onclick="generateGraph()">
     <img src="img/add2.jpeg" alt="View Graph" width="10" height="10" /> 
 </button>   
 
 
-<button class="button" onclick="myFunction2()">
+<button class="button" onclick="export()">
     <img src="img/add2.jpeg" alt="Export" width="10" height="10" /> 
 </button> 
 </div>
