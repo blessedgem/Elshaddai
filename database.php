@@ -35,7 +35,25 @@ if ($_REQUEST['search']['value'])
         $globalSearch .= $_POST['columnNames'][$i] . "::text LIKE '%". $_REQUEST['search']['value'] . "%'"; 
     }
     
-    $globalSearch .= $_POST['where'] && $globalSearch ? " AND " : "";
+    $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
+    $globalSearch = $_POST['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
+}
+
+// Column Filtering
+$columnSearch = "";
+if (isset($_REQUEST['columns']))
+{
+    for ( $i = 0; $i < count($_POST['columnNames']); $i++ ) 
+    {
+        if ($_REQUEST['columns'][$i]['search']['value']) 
+        {
+            $columnSearch = $i == 0 ? $columnSearch : $columnSearch . " AND ";
+            $columnSearch .= $_POST['columnNames'][$i] . "::text LIKE '%". $_REQUEST['columns'][$i]['search']['value'] . "%'"; 
+        }
+    }
+    
+    $columnSearch = $columnSearch ? "(" . $columnSearch . ")" : "";
+    $columnSearch = ($_POST['where'] || $globalSearch) && $columnSearch ? " AND " . $columnSearch : $columnSearch;
 }
 
 $atiaa = \ntentan\atiaa\Driver::getConnection(
@@ -49,9 +67,9 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
 );
 
 $columns = $_POST['cols'] ? $_POST['cols'] : "*";
-$conditions = $_POST['where'] || $globalSearch ? " WHERE " . $_POST['where'] : "";
+$conditions = $_POST['where'] || $globalSearch || $columnSearch ? " WHERE " . $_POST['where'] : "";
 
-$conditions .= $globalSearch;
+$conditions .= $globalSearch . $columnSearch;
 $result = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions $order");
 $displayed = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions $order $limit");
 
@@ -69,6 +87,6 @@ $output = array(
 //    "sEcho" => intval($_GET['sEcho']),
     "recordsTotal" => count($result),
     "recordsFiltered" => count($result),
-    "data" => $data
+    "data" => $data ? $data : []
 );
 echo json_encode($output);
