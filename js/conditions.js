@@ -267,7 +267,7 @@ function populateTable(id, data)
         $(this).html(data[count++]);
     });	
 }
-
+ 
 function generateFunction()
 {
     var cols = "";
@@ -286,45 +286,44 @@ function generateFunction()
         cond = cond + conditions[key];
     }
     
-    $.ajax({
-        type: "POST",
-        data: {
-            cols: cols,
-            where: cond,
-            host: dbHost,
-            password: dbPass,
-            username: dbUser,
-            databasename: db,
-            tablename: dbTable,
-            databasetype: dbType,
-        },
-        url: "database.php",
-        dataType: "html",
-        async: false,
-        success: function(data) {
-            result = data;
-            $(".anotherfield").html('');
-            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table", true);
-            
-            $('#data_table').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [[5, 10, 15], [5, 10, 15]]
-            });
-            
-            $('#data_table tfoot th').each(function(){
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-            });
+    $(".anotherfield").html('');
+    colNames = colNames == '' ? columnNames : colNames;
+    createTable($(".anotherfield"), colNames, [], "data_table", true);
 
-            var table = $('#data_table').DataTable();
-            table.columns().every( function (){
-                var that = this;
-                $( 'input', this.footer() ).on( 'keyup change', function (){
-                    if ( that.search() !== this.value ){
-                        that.search( this.value ).draw();
-                    }
-                });
-            });
+    $('#data_table').DataTable({
+        "lengthMenu": [[5, 10, 15], [5, 10, 15]],
+        "pagingType": "full_numbers",
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "database.php",
+            "type": "POST",
+            "data": {
+                cols: cols,
+                where: cond,
+                host: dbHost,
+                password: dbPass,
+                username: dbUser,
+                databasename: db,
+                tablename: dbTable,
+                databasetype: dbType,
+                columnNames: $.extend({}, colNames)
+            }
         }
+    });
+
+    $('#data_table tfoot th').each(function(){
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+
+    var table = $('#data_table').DataTable();
+    table.columns().every( function (){
+        var that = this;
+        $( 'input', this.footer() ).on( 'keyup change', function (){
+            if ( that.search() !== this.value ){
+                that.search( this.value ).draw();
+            }
+        });
     });
 }
