@@ -285,6 +285,7 @@ function generateFunction()
         cond = key == 0 ? cond : cond + " and ";
         cond = cond + conditions[key];
     }
+    cond = cond == '' ? "" : "(" + cond + ")";
     
     $(".anotherfield").html('');
     colNames = colNames == '' ? columnNames : colNames;
@@ -309,6 +310,10 @@ function generateFunction()
                 databasetype: dbType,
                 columnNames: $.extend({}, colNames)
             }
+        },
+        "language": {
+            "lengthMenu": "Display _MENU_ entries per page",
+            "infoEmpty": "No records available",
         }
     });
 
