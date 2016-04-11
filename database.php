@@ -68,11 +68,12 @@ class Database
         $columnSearch = "";
         if (isset($request['columns']))
         {
+            $count = 0;
             for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
             {
                 if ($request['columns'][$i]['search']['value']) 
                 {
-                    $columnSearch = $i == 0 ? $columnSearch : $columnSearch . " AND ";
+                    $columnSearch = $count ++ == 0 ? $columnSearch : $columnSearch . " AND ";
                     $columnSearch .= $post['columnNames'][$i] . "::text LIKE '%". $request['columns'][$i]['search']['value'] . "%'"; 
                 }
             }
