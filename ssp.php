@@ -23,8 +23,8 @@ else
 
     $output = array(
     //    "sEcho" => intval($_GET['sEcho']),
+        "recordsFiltered" => count($reponse['result']),
         "recordsTotal" => count($reponse['result']),
-        "recordsFiltered" => count($reponse['display']),
         "data" => $data ? $data : []
     );
     echo json_encode($output);
