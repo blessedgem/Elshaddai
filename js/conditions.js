@@ -307,7 +307,9 @@ function generateFunction()
     $(".anotherfield").html('');
     colNames = colNames == '' ? columnNames : colNames;
     createTable($(".anotherfield"), colNames, [], "data_table", true);
-
+    
+    
+    $("#data_table").addClass('stripe');
     $('#data_table').DataTable({
         "lengthMenu": [[5, 10, 15], [5, 10, 15]],
         "pagingType": "full_numbers",
@@ -331,6 +333,7 @@ function generateFunction()
         "language": {
             "lengthMenu": "Display _MENU_ entries per page",
             "infoEmpty": "No records available",
+            "zeroRecords": "Nothing found",
         }
     });
 
