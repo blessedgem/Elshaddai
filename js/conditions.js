@@ -297,7 +297,7 @@ function generateFunction()
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "database.php",
+            "url": "ssp.php",
             "type": "POST",
             "data": {
                 cols: cols,
