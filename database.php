@@ -2,91 +2,99 @@
 
 require "vendor/autoload.php";
 
-// Ordering 
-$order = "";
-if (isset($_REQUEST['order']))
+class Database 
 {
-    $order = " ORDER BY ";
-    for ( $i = 0; $i < count($_POST['columnNames']); $i++ ) 
+    public static function query($request, $post)
     {
-        if ($_REQUEST['order'][$i]) 
-        {
-            $order = $i == 0 ? $order : $order . ", ";
-            $order .= $_POST['columnNames'][$_REQUEST['order'][$i]['column']]." ".addslashes($_REQUEST['order'][$i]['dir']);
-        }
-    }
-    $order = $order == " ORDER BY " ? "" : $order;
-}
+        $atiaa = \ntentan\atiaa\Driver::getConnection(
+            array(
+                'driver' => $post['databasetype'],
+                'dbname' => $post['databasename'],
+                'password'=> $post['password'],
+                'user' => $post['username'],
+                'host'=> $post['host']
+            )
+        );
+        $query = self::$post['databasetype']($request, $post);
+        
+        $result = $atiaa->query($query['query']);
+        $display = $atiaa->query($query['display_query']);
 
-// Paging
-$limit = '';
-if (isset($_REQUEST['start']) && $_REQUEST['length'] != -1) 
-{
-    $limit = " LIMIT ". $_REQUEST['length']." OFFSET ".$_REQUEST['start'];
-}
-
-// Global Filtering
-$globalSearch = "";
-if ($_REQUEST['search']['value']) 
-{
-    for ( $i = 0; $i < count($_POST['columnNames']); $i++ ) 
-    {
-        $globalSearch = $i == 0 ? $globalSearch : $globalSearch . " OR ";
-        $globalSearch .= $_POST['columnNames'][$i] . "::text LIKE '%". $_REQUEST['search']['value'] . "%'"; 
+        return array(
+            'result' => $result,
+            'display' => $display
+        );
     }
     
-    $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
-    $globalSearch = $_POST['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
-}
-
-// Column Filtering
-$columnSearch = "";
-if (isset($_REQUEST['columns']))
-{
-    for ( $i = 0; $i < count($_POST['columnNames']); $i++ ) 
+    public static function postgresql($request, $post)
     {
-        if ($_REQUEST['columns'][$i]['search']['value']) 
+        $order = "";
+        if (isset($request['order']))
         {
-            $columnSearch = $i == 0 ? $columnSearch : $columnSearch . " AND ";
-            $columnSearch .= $_POST['columnNames'][$i] . "::text LIKE '%". $_REQUEST['columns'][$i]['search']['value'] . "%'"; 
+            $order = " ORDER BY ";
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                if ($request['order'][$i]) 
+                {
+                    $order = $i == 0 ? $order : $order . ", ";
+                    $order .= $post['columnNames'][$request['order'][$i]['column']]." ".addslashes($request['order'][$i]['dir']);
+                }
+            }
+            $order = $order == " ORDER BY " ? "" : $order;
         }
+
+        // Paging
+        $limit = '';
+        if (isset($request['start']) && $request['length'] != -1) 
+        {
+            $limit = " LIMIT ". $request['length']." OFFSET ".$request['start'];
+        }
+
+        // Global Filtering
+        $globalSearch = "";
+        if ($request['search']['value']) 
+        {
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                $globalSearch = $i == 0 ? $globalSearch : $globalSearch . " OR ";
+                $globalSearch .= $post['columnNames'][$i] . "::text LIKE '%". $request['search']['value'] . "%'"; 
+            }
+
+            $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
+            $globalSearch = $post['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
+        }
+
+        // Column Filtering
+        $columnSearch = "";
+        if (isset($request['columns']))
+        {
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                if ($request['columns'][$i]['search']['value']) 
+                {
+                    $columnSearch = $i == 0 ? $columnSearch : $columnSearch . " AND ";
+                    $columnSearch .= $post['columnNames'][$i] . "::text LIKE '%". $request['columns'][$i]['search']['value'] . "%'"; 
+                }
+            }
+
+            $columnSearch = $columnSearch ? "(" . $columnSearch . ")" : "";
+            $columnSearch = ($post['where'] || $globalSearch) && $columnSearch ? " AND " . $columnSearch : $columnSearch;
+        }
+        
+        $columns = $post['cols'] ? $post['cols'] : "*";
+        $conditions = $post['where'] || $globalSearch || $columnSearch ? " WHERE " . $post['where'] : "";
+
+        $conditions .= $globalSearch . $columnSearch;
+        
+        return array(
+            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order",
+            "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
+        );
     }
     
-    $columnSearch = $columnSearch ? "(" . $columnSearch . ")" : "";
-    $columnSearch = ($_POST['where'] || $globalSearch) && $columnSearch ? " AND " . $columnSearch : $columnSearch;
-}
-
-$atiaa = \ntentan\atiaa\Driver::getConnection(
-    array(
-        'driver' => $_POST['databasetype'],
-        'dbname' => $_POST['databasename'],
-        'password'=> $_POST['password'],
-        'user' => $_POST['username'],
-        'host'=> $_POST['host'],
-    )
-);
-
-$columns = $_POST['cols'] ? $_POST['cols'] : "*";
-$conditions = $_POST['where'] || $globalSearch || $columnSearch ? " WHERE " . $_POST['where'] : "";
-
-$conditions .= $globalSearch . $columnSearch;
-$result = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions $order");
-$displayed = $atiaa->query("SELECT $columns FROM {$_POST['tablename']} $conditions $order $limit");
-
-foreach ($displayed as $key => $value)
-{
-   foreach ($value as $index => $datum)
+    public static function mysql($request, $post)
     {
-       $new[] = "$datum";
+        
     }
-    $data[] = $new;
-    unset($new);
+    
 }
-
-$output = array(
-//    "sEcho" => intval($_GET['sEcho']),
-    "recordsTotal" => count($result),
-    "recordsFiltered" => count($result),
-    "data" => $data ? $data : []
-);
-echo json_encode($output);
