@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/conditions.js"></script>
