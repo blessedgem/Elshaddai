@@ -270,27 +270,10 @@ function populateTable(id, data)
 
 function generateFunction()
 {
-    var cols = "";
-    var cond = "";
-    var colNames = [];
-    for (var key in selectedColumns)
-    {
-        cols = key == 0 ? cols : cols + ", ";
-        cols = cols + columnNames[selectedCols[key]];
-        colNames.push(columnNames[selectedCols[key]]);
-    }
-    
-    for (var key in conditions)
-    {
-        cond = key == 0 ? cond : cond + " and ";
-        cond = cond + conditions[key];
-    }
-    
     $.ajax({
         type: "POST",
         data: {
-            cols: cols,
-            where: cond,
+            data:result,
             host: dbHost,
             password: dbPass,
             username: dbUser,
@@ -302,13 +285,7 @@ function generateFunction()
         dataType: "html",
         async: false,
         success: function(data) {
-            result = data;
-            $(".anotherfield").html('');
-            createTable($(".anotherfield"), colNames == '' ? columnNames : colNames , JSON.parse(result), "data_table", true);
-            
-            $('#data_table').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [[5, 10, 15], [5, 10, 15]]
+        alert ("Database Created Successfully!!!")
             });
             
             $('#data_table tfoot th').each(function(){
@@ -328,3 +305,4 @@ function generateFunction()
         }
     });
 }
+
