@@ -1,5 +1,7 @@
 $(document).ready(function(){
     generateFunction();
+    createTable($(".selected"), ["Selected Columns"], [], 'selection_table');
+    createTable($(".conditions"), ["Selected Conditions"], [], "conditions_table");
     
     $(".close").click(function(){
         $(".mask").hide();
@@ -39,7 +41,16 @@ $(document).ready(function(){
         $(".conditions table").remove();
         conditionsCounter = 0;
         
-        var queried = $('#col_drop').val() + " " + $('#filt_drop').val() + ($('#fput_0').val() ? " " + $('#fput_0').val() : "") + 
+        var split = $('#filt_drop').val().split("'");
+        var operand = split[0];
+        
+        if(split.length > 1)
+        {
+            $('#fput_0').val() ? $('#fput_0').val("'" + split[1] + $('#fput_0').val() + split[1] + "'") : "";
+            $('#fput_1').val() ? $('#fput_1').val("'" + split[1] + $('#fput_1').val() + split[1] + "'") : "";
+        }
+        
+        var queried = $('#col_drop').val() + " " + operand + ($('#fput_0').val() ? " " + $('#fput_0').val() : "") + 
             ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= " + $('#fput_1').val() : "");
         conditions[conditions.length] = [queried];
         createTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
@@ -103,31 +114,36 @@ function createFilterDropDown(form, container, type)
 {
     var filters;
     var operands;
+    var placehoder;
     var field = "text";
     
     switch(type) 
     {
         case "date":
-            filters = ["", "On", "Before", "After", "Between"];
-            operands = ["is null", "=", "<", ">", ">="];
+        case "timestamp with time zone":
+            filters = ["", "Not Null", "On", "Before", "After", "Between"];
+            operands = ["is null", "is not null", "= '", "< '", "> '", ">= '"];
+            placehoder = 'YYYY-MM-DD';
             field = "date";
             break;
         case "int":
         case "integer":
         case "numeric":
-            filters = ["", "Equal To", "Less Than", "Greater Than", "Between"];
-            operands = ["is null", "=", "<", ">", ">="];
+            filters = ["", "Not Null", "Equal To", "Less Than", "Greater Than", "Between"];
+            operands = ["is null", "is not null", "=", "<", ">", ">="];
+            placehoder = 'Enter number';
             break;
         case "string":
         case "text":
         case "varchar":
         case "character varying":
-            filters = ["", "Contains", "Exactly"];
-            operands = ["is null", "like", "="];
+            filters = ["", "Not Null", "Contains", "Exactly"];
+            operands = ["is null", "is not null", "like '%", "= '"];
+            placehoder = 'Enter text';
             break;
         case "boolean":
-            filters = ["", "Yes", "No"];
-            operands = ["is null", "is true", "is false"];
+            filters = ["", "Not Null", "Yes", "No"];
+            operands = ["is null", "is not null", "is true", "is false"];
             break;
         default:
             break
@@ -140,7 +156,7 @@ function createFilterDropDown(form, container, type)
         option.attr("value", operands[index]);
 
         option.click(function(){
-            field_inputs = index == 4 ? 2 : (index == 0 ? 0 : 1);
+            field_inputs = index == 5 ? 2 : (index == 0 || index == 1 ? 0 : 1);
             for (var i = 0; i < conditionsCounter; i++) 
             {
                 form.find(":last").remove();
@@ -151,6 +167,7 @@ function createFilterDropDown(form, container, type)
             {
                 if (type === 'boolean') continue;
                 var text_input = $("<input/>").css('marginRight', '30px');
+                text_input.attr("placeholder", placehoder);
                 text_input.attr("id", 'fput_' + i);
                 text_input.attr("type", field);
                 form.append(text_input);
@@ -267,42 +284,71 @@ function populateTable(id, data)
         $(this).html(data[count++]);
     });	
 }
-
+ 
 function generateFunction()
 {
-    $.ajax({
-        type: "POST",
-        data: {
-            data:result,
-            host: dbHost,
-            password: dbPass,
-            username: dbUser,
-            databasename: db,
-            tablename: dbTable,
-            databasetype: dbType,
+    var cols = "";
+    var cond = "";
+    var colNames = [];
+    for (var key in selectedColumns)
+    {
+        cols = key == 0 ? cols : cols + ", ";
+        cols = cols + columnNames[selectedCols[key]];
+        colNames.push(columnNames[selectedCols[key]]);
+    }
+    
+    for (var key in conditions)
+    {
+        cond = key == 0 ? cond : cond + " and ";
+        cond = cond + conditions[key];
+    }
+    cond = cond == '' ? "" : "(" + cond + ")";
+    
+    $(".anotherfield").html('');
+    colNames = colNames == '' ? columnNames : colNames;
+    createTable($(".anotherfield"), colNames, [], "data_table", true);
+    
+    
+    $("#data_table").addClass('stripe');
+    $('#data_table').DataTable({
+        "lengthMenu": [[10, 15, 20], [10, 15, 20]],
+        "pagingType": "full_numbers",
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "ssp.php",
+            "type": "POST",
+            "data": {
+                cols: cols,
+                where: cond,
+                host: dbHost,
+                password: dbPass,
+                username: dbUser,
+                databasename: db,
+                tablename: dbTable,
+                databasetype: dbType,
+                columnNames: $.extend({}, colNames)
+            }
         },
-        url: "database.php",
-        dataType: "html",
-        async: false,
-        success: function(data) {
-        alert ("Database Created Successfully!!!")
-            });
-            
-            $('#data_table tfoot th').each(function(){
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-            });
-
-            var table = $('#data_table').DataTable();
-            table.columns().every( function (){
-                var that = this;
-                $( 'input', this.footer() ).on( 'keyup change', function (){
-                    if ( that.search() !== this.value ){
-                        that.search( this.value ).draw();
-                    }
-                });
-            });
+        "language": {
+            "lengthMenu": "Display _MENU_ entries per page",
+            "infoEmpty": "No records available",
+            "zeroRecords": "Nothing found",
         }
     });
-}
 
+    $('#data_table tfoot th').each(function(){
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+
+    var table = $('#data_table').DataTable();
+    table.columns().every( function (){
+        var that = this;
+        $( 'input', this.footer() ).on( 'keyup change', function (){
+            if ( that.search() !== this.value ){
+                that.search( this.value ).draw();
+            }
+        });
+    });
+}
