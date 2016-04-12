@@ -1,7 +1,9 @@
 <?php
+
+
 require "vendor/autoload.php";
 require "ExportDatabase.php";
-
+var_dump($_POST);
 $data = require "ajumamoro.conf.php";;
 $queue = ajumamoro\Queue::connectBroker([
     'driver' => 'redis',
