@@ -311,7 +311,7 @@ function generateFunction()
     
     $("#data_table").addClass('stripe');
     $('#data_table').DataTable({
-        "lengthMenu": [[5, 10, 15], [5, 10, 15]],
+        "lengthMenu": [[10, 15, 20], [10, 15, 20]],
         "pagingType": "full_numbers",
         "processing": true,
         "serverSide": true,
