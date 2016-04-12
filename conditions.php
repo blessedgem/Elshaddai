@@ -122,7 +122,7 @@ foreach($columnType as $key) {
 </button>   
 
 
-<button class="button" onclick="export()">
+<button class="button" onclick="exportTable()">
     <img src="img/add2.jpeg" alt="Export" width="10" height="10" /> 
 </button> 
 </div>
@@ -161,6 +161,10 @@ foreach($columnType as $key) {
 <div class="popup" id='conditions_popup'>
     <div id="accept_conditon" ><i class = "accept fa fa-check"></i></div>
     <div class="close" id="close_condition">x</div>
+</div>
+    
+<div class="popup" id='export_popup'>
+    <div class="close" id="close_export">x</div>
 </div>
 
 </body>
