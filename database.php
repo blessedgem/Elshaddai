@@ -95,7 +95,17 @@ class Database
     
     public static function mysql($request, $post)
     {
+        // Paging
+        $limit = '';
+        if (isset($request['start']) && $request['length'] != -1) 
+        {
+            $limit = " LIMIT ". $request['length']." OFFSET ".$request['start'];
+        }
 
+        return array(
+            "query" => "SELECT * FROM {$post['tablename']}",
+            "display_query" => "SELECT * FROM {$post['tablename']} $limit"
+        );
     }
     
 }
