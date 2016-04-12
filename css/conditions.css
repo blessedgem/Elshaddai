@@ -117,6 +117,24 @@
     z-index: 999999;
 }
 
+.form-group {
+    width:100%;
+    margin-bottom: 20px;
+}
+
+.form-group input{
+    width:60%;
+}
+
+.form-group label{
+    width:30%;
+    margin-right: 20px;
+}
+
+button{
+    margin-left: 19%;
+}
+
 #popup_table td:hover {
     background-color: #E1E1E1;
 }
