@@ -287,23 +287,7 @@ function populateTable(id, data)
  
 function generateFunction()
 {
-    var cols = "";
-    var cond = "";
-    var colNames = [];
-    for (var key in selectedColumns)
-    {
-        cols = key == 0 ? cols : cols + ", ";
-        cols = cols + columnNames[selectedCols[key]];
-        colNames.push(columnNames[selectedCols[key]]);
-    }
-    
-    for (var key in conditions)
-    {
-        cond = key == 0 ? cond : cond + " and ";
-        cond = cond + conditions[key];
-    }
-    cond = cond == '' ? "" : "(" + cond + ")";
-    
+    getConditions();
     $(".anotherfield").html('');
     colNames = colNames == '' ? columnNames : colNames;
     createTable($(".anotherfield"), colNames, [], "data_table", true);
@@ -350,5 +334,93 @@ function generateFunction()
                 that.search( this.value ).draw();
             }
         });
+    });
+}
+
+function getConditions()
+{
+    cols = "";
+    cond = "";
+    colNames = [];
+    for (var key in selectedColumns)
+    {
+        cols = key == 0 ? cols : cols + ", ";
+        cols = cols + columnNames[selectedCols[key]];
+        colNames.push(columnNames[selectedCols[key]]);
+    }
+    
+    for (var key in conditions)
+    {
+        cond = key == 0 ? cond : cond + " and ";
+        cond = cond + conditions[key];
+    }
+    cond = cond == '' ? "" : "(" + cond + ")";
+}
+
+function exportTable()
+{
+    $(".mask").show();
+    $("#export_popup").show("slow");
+    $("#export_popup").find(":button").remove();
+    $("#export_popup").find(".form-horizontal").remove();
+    
+    var form = $("<form/>");
+    form.addClass('form-horizontal');
+    
+    form.append("\n\
+        <div class='form-group' style='margin-top:50px'>\n\
+            <label for='name' class='col-sm-2 control-label'>Database Driver</label>\n\
+            <div class='col-sm-10'>\n\
+                <select  name=databasetype>\n\
+                    <option value='hadoop'>Hadoop</option>\n\
+                    <option value='postgresql'>Postgresql</option>\n\
+                    <option value='mysql'>Mysql</option>\n\
+                </select>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='ip' class='col-sm-2 control-label'>Local Host IP</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='host' name='localhost' placeholder='host' value=''>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='ip' class='col-sm-2 control-label'>Virtual Host IP</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='host' name='virtualhost' placeholder='host' value=''>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='name' class='col-sm-2 control-label'>Directory Name</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='dirname' name='dirname' placeholder='directory name' value=''>\n\
+            </div>\n\
+        </div>\n\
+        </div>\n\
+    ");
+    $("#export_popup").append(form);
+    $("#export_popup").append("<button onclick=exporter() class='btn btn-primary' style='margin-left:55px'>Export</button>");
+}
+
+function exporter()
+{
+   $.ajax({
+        type: "POST",
+        data: {
+            cols: cols,
+            where: cond,
+            host: dbHost,
+            password: dbPass,
+            username: dbUser,
+            databasename: db,
+            tablename: dbTable,
+            databasetype: dbType,
+        },
+        url: "database.php",
+        dataType: "html",
+        async: false,
+        success: function(data) {
+            alert('yes');
+        }
     });
 }
