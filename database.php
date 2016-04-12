@@ -95,7 +95,7 @@ class Database
     
     public static function mysql($request, $post)
     {
-        
+
     }
     
 }
