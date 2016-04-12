@@ -23,9 +23,9 @@ class ExportDatabase extends \ajumamoro\Job
 	private $drivername;
 	private $dbport;
 
-	public ExportDatabase()
+	public function ExportDatabase()
 	{
-		file_write_contents("exportDatabase.sh","ssh cloudera@$virtualhost "sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username --password=$password --warehouse-dir=/user/hive/warehouse  --hive-import -m 1" &> exportDatabse.out");
+		file_write_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username --password=$password --warehouse-dir=/user/hive/warehouse  --hive-import -m 1' &> exportDatabse.out");
 
 	}
 
