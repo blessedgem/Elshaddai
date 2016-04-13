@@ -28,10 +28,7 @@
             <div class="container">
                 <ul class="nav">
                     <li><a href="index.php">Home</a></li>
-
                      <li><a href="index.php">Database</a></li>
-
-                    
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-th-large"></i> Hadoop
@@ -161,6 +158,10 @@ foreach($columnType as $key) {
 <div class="popup" id='conditions_popup'>
     <div id="accept_conditon" ><i class = "accept fa fa-check"></i></div>
     <div class="close" id="close_condition">x</div>
+</div>
+    
+<div class="popup" id='graph_popup'>
+    <div class="close" id="close_export">x</div>
 </div>
     
 <div class="popup" id='export_popup'>
