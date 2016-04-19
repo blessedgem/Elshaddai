@@ -428,3 +428,10 @@ function exporter()
         }
     });
 }
+
+function generateGraph()
+{
+    $(".mask").show();
+    $("#graph_popup").show("slow");
+}
+
