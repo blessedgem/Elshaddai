@@ -1,80 +1,29 @@
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
-16/04/19 09:52:50 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
-16/04/19 09:52:50 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
-16/04/19 09:52:50 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: It seems that you're doing hive import directly into default
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: hive warehouse directory which is not supported. Sqoop is
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: firstly importing data into separate directory and then
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: inserting data into hive. Please consider removing
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: --target-dir or --warehouse-dir into /user/hive/warehouse in
-16/04/19 09:52:50 WARN tool.BaseSqoopTool: case that you will detect any issues.
-16/04/19 09:52:51 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
-16/04/19 09:52:51 ERROR manager.CatalogQueryManager: Failed to list tables
-java.sql.SQLException: Access denied for user 'root'@'10.76.254.127' (using password: YES)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:996)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3887)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3823)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1659)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1206)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2234)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2265)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2064)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:790)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:377)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:395)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:885)
-	at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:52)
-	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:102)
-	at org.apache.sqoop.tool.ImportAllTablesTool.run(ImportAllTablesTool.java:95)
-	at org.apache.sqoop.Sqoop.run(Sqoop.java:143)
-	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
-	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:179)
-	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:218)
-	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:227)
-	at org.apache.sqoop.Sqoop.main(Sqoop.java:236)
-16/04/19 09:52:51 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: java.sql.SQLException: Access denied for user 'root'@'10.76.254.127' (using password: YES)
-java.lang.RuntimeException: java.sql.SQLException: Access denied for user 'root'@'10.76.254.127' (using password: YES)
-	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:118)
-	at org.apache.sqoop.tool.ImportAllTablesTool.run(ImportAllTablesTool.java:95)
-	at org.apache.sqoop.Sqoop.run(Sqoop.java:143)
-	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
-	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:179)
-	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:218)
-	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:227)
-	at org.apache.sqoop.Sqoop.main(Sqoop.java:236)
-Caused by: java.sql.SQLException: Access denied for user 'root'@'10.76.254.127' (using password: YES)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:996)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3887)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3823)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1659)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1206)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2234)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2265)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2064)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:790)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:377)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:395)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:885)
-	at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:52)
-	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:102)
-	... 7 more
+16/04/19 10:46:29 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+16/04/19 10:46:29 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
+16/04/19 10:46:29 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: It seems that you're doing hive import directly into default
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: hive warehouse directory which is not supported. Sqoop is
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: firstly importing data into separate directory and then
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: inserting data into hive. Please consider removing
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: --target-dir or --warehouse-dir into /user/hive/warehouse in
+16/04/19 10:46:29 WARN tool.BaseSqoopTool: case that you will detect any issues.
+16/04/19 10:46:30 INFO manager.SqlManager: Using default fetchSize of 1000
+16/04/19 10:46:30 INFO tool.CodeGenTool: Beginning code generation
+16/04/19 10:46:30 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "hadoop_table" AS t LIMIT 1
+16/04/19 10:46:30 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/b7fad196894939c0f3856d3c45afd37c/hadoop_table.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+16/04/19 10:46:34 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/b7fad196894939c0f3856d3c45afd37c/hadoop_table.jar
+16/04/19 10:46:34 WARN manager.PostgresqlManager: It looks like you are importing from postgresql.
+16/04/19 10:46:34 WARN manager.PostgresqlManager: This transfer can be faster! Use the --direct
+16/04/19 10:46:34 WARN manager.PostgresqlManager: option to exercise a postgresql-specific fast path.
+16/04/19 10:46:34 INFO mapreduce.ImportJobBase: Beginning import of hadoop_table
+16/04/19 10:46:34 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+16/04/19 10:46:34 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+16/04/19 10:46:35 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+16/04/19 10:46:35 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/04/19 10:46:36 WARN security.UserGroupInformation: PriviledgedActionException as:cloudera (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/user/hive/warehouse/hadoop_table already exists
+16/04/19 10:46:36 ERROR tool.ImportAllTablesTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/user/hive/warehouse/hadoop_table already exists
