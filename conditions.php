@@ -69,7 +69,7 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     )
 );
 //Make the query
-$columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'");
+$columnType = $atiaa->query("SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '$tablename'" );
 
 $columns = array();
 foreach($columnType as $key) {
