@@ -61,42 +61,8 @@
     </div>
 <form class="form-horizontal" role="form" method="post" action="addJob.php"> 
     <!--form class="form-horizontal" role="form" method="post" action="general2.php"-->
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">User Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
-            </div>
-        </div>
-    <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Database Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
-                </div>
-    </div>
 
-
-    <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="pswd" name="password" placeholder="password" value="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Local Host IP</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="host" name="localhost" placeholder="host" value="">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Virtual Host IP</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="host" name="virtualhost" placeholder="host" value="">
-        </div>
-    </div>
-
-   
-    <div class="form-group">
+     <div class="form-group">
         <label for="ip" class="col-sm-2 control-label">Select Database</label>
         <div class="col-sm-10">
 
@@ -108,6 +74,42 @@
         </div>
     </div>
 
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">User Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="usrname" name="username" placeholder="User Name" value="">
+            </div>
+        </div>
+
+     <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="pswd" name="password" placeholder="Password" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Database Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="Database Name" value="">
+                </div>
+    </div>
+
+
+   
+    <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Local Host IP</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="host" name="localhost" placeholder="Local Host" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Virtual Host IP</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="host" name="virtualhost" placeholder="Virtual Host" value="">
+        </div>
+    </div>
     <!-- jdbc driver-->
 
     <div class="form-group">
@@ -121,7 +123,7 @@
     <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Directory Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="dirname" name="dirname" placeholder="DirName" value="">
+                <input type="text" class="form-control" id="dirname" name="dirname" placeholder="Directory Name" value="">
             </div>
     </div>
 
