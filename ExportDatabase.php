@@ -2,7 +2,6 @@
 
 require "vendor/autoload.php";
 
-
 $username =$_POST['username'];
 $databasename =$_POST['databasename'];
 $password =$_POST['password'];
@@ -25,8 +24,7 @@ class ExportDatabase extends \ajumamoro\Job
 
     public function ExportDatabase()
     {
-            file_put_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username --password=$password --target-dir /$dirname -m 1' &> exportDatabse.out");
-
+        file_put_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username --password=$password --target-dir /$dirname -m 1' &> exportDatabse.out");
     }
 
 
