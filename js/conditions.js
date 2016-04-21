@@ -404,11 +404,12 @@ function exportTable()
 
 function exporter()
 {
-   $.ajax({
+    $.ajax({
         type: "POST",
         data: {
             cols: cols,
             where: cond,
+            graph: true,
             host: dbHost,
             password: dbPass,
             username: dbUser,
@@ -420,11 +421,11 @@ function exporter()
             export_virtualhost: $('[name="virtualhost"]').val(),
             export_databasetype: $('[name="databasetype"]').val(),
         },
-        url: "database.php",
+        url: "addJob.php",
         dataType: "html",
         async: false,
         success: function(data) {
-            alert('yes');
+            alert('me');
         }
     });
 }
