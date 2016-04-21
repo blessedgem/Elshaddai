@@ -341,12 +341,15 @@ function getConditions()
 {
     cols = "";
     cond = "";
+    dummy = "";
     colNames = [];
     for (var key in selectedColumns)
     {
         cols = key == 0 ? cols : cols + ", ";
+        dummy = key == 0 ? dummy : dummy + ", ";
         cols = cols + columnNames[selectedCols[key]];
         colNames.push(columnNames[selectedCols[key]]);
+        dummy = dummy + columnNames[selectedCols[key]] + " " + dataTypes[selectedCols[key]] ;
     }
     
     for (var key in conditions)
@@ -411,6 +414,7 @@ function exporter()
             where: cond,
             graph: true,
             host: dbHost,
+            dummy: dummy,
             password: dbPass,
             username: dbUser,
             databasename: db,
