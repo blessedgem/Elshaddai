@@ -13,16 +13,17 @@ if($_POST['graph'])
         array(
             'driver' => 'postgresql',
             'dbname' => 'dummy',
-            'password'=> $post['password'],
-            'user' => $post['username'],
-            'host'=> $post['host']
+            'password'=> $_POST['password'],
+            'user' => $_POST['username'],
+            'host'=> $_POST['host']
         )
     );
-    $atiaa->query("CREATE table dummy_table");
     
+    $atiaa->query("DROP table dummy_table");
+    $atiaa->query("CREATE table dummy_table({$_POST['dummy']});");
     foreach ($reponse['result'] as $data)
     {
-        $value = 0;
+        $values = 0;
         $counter = 0;
         foreach ($data as $value)
         {
@@ -31,9 +32,7 @@ if($_POST['graph'])
             $counter ++;
         }
         
-        echo json_encode($values);die();
-        $atiaa->query("CREATE table dummy_table");
-        $atiaa->query("INSERT INTO table_name ({$_POST['cols']}) VALUES ($values);");
+        $atiaa->query("INSERT INTO dummy_table ({$_POST['cols']}) VALUES ($values);");
     }
 }
 
@@ -43,20 +42,20 @@ else
     $job = new ExportDatabase();
 }
 
-$queue = ajumamoro\Queue::connectBroker([
-    'driver' => 'redis',
-    'scheme' => 'tcp',
-    'host' => '127.0.0.1'
-]);
-
-$job->addAttribute('username', $_POST['username']);
-$job->addAttribute('databasename',$_POST['databasename']);
-$job->addAttribute('password',$_POST['password']);
-$job->addAttribute('localhost',$_POST['localhost']);
-$job->addAttribute('virtualhost',$_POST['virtualhost']);
-$job->addAttribute('databasetype',$_POST['databasetype']);
-$job->addAttribute('portnumber',$_POST['portnumber']);
-$job->addAttribute('dirname',$_POST['dirname']);
-$queue->add($job);
-
-
+//$queue = ajumamoro\Queue::connectBroker([
+//    'driver' => 'redis',
+//    'scheme' => 'tcp',
+//    'host' => '127.0.0.1'
+//]);
+//
+//$job->addAttribute('username', $_POST['username']);
+//$job->addAttribute('databasename',$_POST['databasename']);
+//$job->addAttribute('password',$_POST['password']);
+//$job->addAttribute('localhost',$_POST['localhost']);
+//$job->addAttribute('virtualhost',$_POST['virtualhost']);
+//$job->addAttribute('databasetype',$_POST['databasetype']);
+//$job->addAttribute('portnumber',$_POST['portnumber']);
+//$job->addAttribute('dirname',$_POST['dirname']);
+//$queue->add($job);
+//
+//
