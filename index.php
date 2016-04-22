@@ -5,9 +5,17 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/slippry.css" type="text/css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
    <script src="js/bootstrap.js"></script>
+   <script src="js/slippry.min.js"></script>
+   <script>
+    $(document).ready(function(){
+      $('#slippry').slippry()
+    });
+  </script>
+
    <title>GemSoft</title>
 </head>
 <body>
@@ -47,6 +55,18 @@
 </div>
 
 <div class="hero-unit">
+
+<ul id="slippry">
+  <li>
+    <a href="#slide1"><img src="img/db.jpeg" alt="Welcome to Slippry!"></a>
+  </li>
+  <li>
+    <a href="#slide2"><img src="img/bigs1.jpg"  alt="This is an awesome jQuery slider plugin."></a>
+  </li>
+  <li>
+    <a href="#slide3"><img src="img/structured.jpg" alt="Check it out, you are going to <span class='red'>♥</span> it :)"></a>
+  </li>
+</ul>
 
        
      </div>

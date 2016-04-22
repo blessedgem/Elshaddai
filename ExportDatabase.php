@@ -8,7 +8,7 @@ $password =$_POST['password'];
 $localhost=$_POST['localhost'];
 $virtualhost=$_POST['virtualhost'];
 $drivername = $_POST['databasetype'];
-$dbport = $_POST['portnumber'];
+$portnumber = $_POST['portnumber'];
 $dirname = $_POST['dirname'];
 
 class ExportDatabase extends \ajumamoro\Job
