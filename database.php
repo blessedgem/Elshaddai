@@ -88,7 +88,7 @@ class Database
         $conditions .= $globalSearch . $columnSearch;
         
         return array(
-            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 5000",
+            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 500",
             "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
         );
     }

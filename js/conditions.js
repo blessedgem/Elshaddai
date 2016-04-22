@@ -289,9 +289,7 @@ function generateFunction()
 {
     getConditions();
     $(".anotherfield").html('');
-    colNames = colNames == '' ? columnNames : colNames;
     createTable($(".anotherfield"), colNames, [], "data_table", true);
-    
     
     $("#data_table").addClass('stripe');
     $('#data_table').DataTable({
@@ -343,13 +341,30 @@ function getConditions()
     cond = "";
     dummy = "";
     colNames = [];
-    for (var key in selectedColumns)
+    
+    
+    if(selectedColumns != '')
     {
-        cols = key == 0 ? cols : cols + ", ";
-        dummy = key == 0 ? dummy : dummy + ", ";
-        cols = cols + columnNames[selectedCols[key]];
-        colNames.push(columnNames[selectedCols[key]]);
-        dummy = dummy + columnNames[selectedCols[key]] + " " + dataTypes[selectedCols[key]] ;
+        for (var key in selectedColumns)
+        {
+            cols = key == 0 ? cols : cols + ", ";
+            dummy = key == 0 ? dummy : dummy + ", ";
+            cols = cols + columnNames[selectedCols[key]];
+            colNames.push(columnNames[selectedCols[key]]);
+            dummy = dummy + columnNames[selectedCols[key]] + " " + dataTypes[selectedCols[key]] ;
+        }
+    }
+    
+    else
+    {
+        for (var key in columnNames)
+        {
+            cols = key == 0 ? cols : cols + ", ";
+            dummy = key == 0 ? dummy : dummy + ", ";
+            cols = cols + columnNames[key];
+            colNames.push(columnNames[key]);
+            dummy = dummy + columnNames[key] + " " + dataTypes[key] ;
+        }
     }
     
     for (var key in conditions)
