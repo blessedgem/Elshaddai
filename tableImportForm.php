@@ -49,7 +49,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="sqoopForm.php">Export</a></li>
+                            <li><a href="sqoopForm.php">Export To Hadoop</a></li>
                             <li><a href="form.php">Import</a></li>
                             
                         </ul>
@@ -59,91 +59,60 @@
             </div>
         </div>
     </div>
-<form class="form-horizontal" role="form" method="post" action="ExportDatabase.php"> 
+<form class="form-horizontal" role="form" method="post" action="createDatabase.php"> 
     <!--form class="form-horizontal" role="form" method="post" action="general2.php"-->
+
+    <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Select Database</label>
+        <div class="col-sm-10">
+             <select  name=databasetype>
+                <option value="postgresql">Postgresql</option>
+                <option value="mysql">Mysql</option>
+                
+            </select> 
+        </div>
+    </div>
+
+
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">User Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="usrname" name="username" placeholder="Database UserName" value="">
+                <input type="text" class="form-control" id="usrname" name="username" placeholder="UserName" value="">
             </div>
         </div>
     <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">Database Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="Database Name" value="">
+                    <input type="text" class="form-control" id="dbname" name="databasename" placeholder="DBName" value="">
                 </div>
     </div>
 
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Table Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="tablename" name="tablename" placeholder="TBName" value="">
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="pswd" name="password" placeholder="Database Password" value="">
+            <input type="password" class="form-control" id="pswd" name="password" placeholder="password" value="">
         </div>
     </div>
     <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Local Host IP</label>
+        <label for="ip" class="col-sm-2 control-label">Host</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="host" name="localhost" placeholder="Local host IP" value="">
+            <input type="text" class="form-control" id="host" name="host" placeholder="host" value="">
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Virtual Host IP</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="host" name="virtualhost" placeholder="Virtual host IP" value="">
-        </div>
-    </div>
-
-   
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Select Database</label>
-        <div class="col-sm-10">
-
-             <select  name=databasetype>
-                <option value="postgresql">Postgresql</option>
-                <option value="mysql">Mysql</option>
-               
-            </select> 
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Create Table</label>
-        <div class="col-sm-10">
-
-             <select  name=databasetype>
-                <option value="postgresql">Specify Columns</option>
-            </select> 
-        </div>
-    </div>
-
-
-
-    <!-- jdbc driver-->
-
-    <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Port Number</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="port" name="portnumber" placeholder="Port" value="">
-        </div>
-    </div>
-
-
-    <!--div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Directory Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="dirname" name="dirname" placeholder="DirName" value="">
-            </div>
-    </div-->
-
-    <button onclick="myFunction()" type = "submit" class = "btn btn-primary">Connect</button>
+    <button type = "submit" class = "btn btn-primary">Connect</button>
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
             <!--Will be used to display an alert to the user-->
         </div>
     </div>
-
 
 </div>
 

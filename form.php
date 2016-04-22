@@ -61,6 +61,21 @@
     </div>
 <form class="form-horizontal" role="form" method="post" action="conditions.php"> 
     <!--form class="form-horizontal" role="form" method="post" action="general2.php"-->
+
+
+    <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Select Database</label>
+        <div class="col-sm-10">
+             <select  name=databasetype>
+                <option value="postgresql">Postgresql</option>
+                <option value="mysql">Mysql</option>
+                
+            </select> 
+        </div>
+    </div>
+
+
+        
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">User Name</label>
             <div class="col-sm-10">
@@ -93,19 +108,6 @@
             <input type="text" class="form-control" id="host" name="host" placeholder="host" value="">
         </div>
     </div>
-
-
-    <div class="form-group">
-        <label for="ip" class="col-sm-2 control-label">Select Database</label>
-        <div class="col-sm-10">
-             <select  name=databasetype>
-                <option value="postgresql">Postgresql</option>
-                <option value="mysql">Mysql</option>
-                
-            </select> 
-        </div>
-    </div>
-
 
     <button type = "submit" class = "btn btn-primary">Connect</button>
     <div class="form-group">

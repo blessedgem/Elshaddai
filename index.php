@@ -44,7 +44,7 @@
     </a>
     <ul class="dropdown-menu">
         <li><a href="sqoopForm.php">Export To Hadoop</a></li>
-        <li><a href="tableImportForm.php">Import </a></li>
+        <li><a href="tableImportForm.php">Import From Hadoop </a></li>
         
     </ul>
 </li>
