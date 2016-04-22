@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <script src="js/jquery-latest.min.js" type="text/javascript"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/highcharts.js"></script>
     <script src="js/conditions.js"></script>
     <script src="js/bootstrap.js"></script>
+    
 </head>
 
 
@@ -161,6 +163,10 @@ foreach($columnType as $key) {
 </div>
     
 <div class="popup" id='graph_popup'>
+    <div class="close" id="close_export">x</div>
+</div>
+
+<div class="popup" id="graphical">
     <div class="close" id="close_export">x</div>
 </div>
     

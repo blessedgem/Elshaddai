@@ -453,5 +453,114 @@ function generateGraph()
 {
     $(".mask").show();
     $("#graph_popup").show("slow");
+    $("#graph_popup").find(":button").remove();
+    $("#graph_popup").find(".form-horizontal").remove();
+    
+    var form = $("<form/>");
+    form.addClass('form-horizontal');
+    
+    form.append("\n\
+        <div class='form-group' style='margin-top:50px'>\n\
+            <label for='name' class='col-sm-2 control-label'>Database Driver</label>\n\
+            <div class='col-sm-10'>\n\
+                <select  name=databasetype>\n\
+                    <option value='hadoop'>Hadoop</option>\n\
+                    <option value='postgresql'>Postgresql</option>\n\
+                    <option value='mysql'>Mysql</option>\n\
+                </select>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='ip' class='col-sm-2 control-label'>Local Host IP</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='host' name='localhost' placeholder='host' value=''>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='ip' class='col-sm-2 control-label'>Virtual Host IP</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='host' name='virtualhost' placeholder='host' value=''>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='name' class='col-sm-2 control-label'>Directory Name</label>\n\
+            <div class='col-sm-10'>\n\
+                <input type='text' class='form-control' id='dirname' name='dirname' placeholder='directory name' value=''>\n\
+            </div>\n\
+        </div>\n\
+        </div>\n\
+    ");
+    $("#graph_popup").append(form);
+    $("#graph_popup").append("<button onclick=grapher() class='btn btn-primary' style='margin-left:55px'>Draw</button>");
+}
+
+
+function grapher()
+{
+    $(".mask").hide();
+    $(".popup table").remove();
+    $(".popup").hide();
+        
+    $(".mask").show();
+    $("#graphical").show("slow");
+    
+    var lineGraph = $("<div/>");
+    lineGraph.addClass('line_graph');
+    $("#graphical").append(lineGraph);
+    
+    $.ajax({
+        method: "GET",
+        url: "/GraphAPI.php",
+        success: function(values){
+            //To convert string to json
+            values = $.parseJSON(values);
+            var mainData = new Array();
+            var labels = [];
+
+            for(var key in values)
+            {
+                vals = {};
+                if(values.hasOwnProperty(key)) 
+                {
+                    //Where you put the variables for the columns and 
+                    labels.push(values[key]['transaction_id']);
+                    mainData.push(parseFloat(values[key]['amount']));
+                }
+            }
+      
+            $(function (){
+                $(".line_graph").highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    xAxis: {
+                        categories: labels,
+                        show: true,
+                        labels: {
+                            enabled: true
+                        }
+                    },
+                    yAxis: {
+
+                    },
+                    series: [{
+                        animation:true,
+                        name: 'data',
+                        data: mainData,
+                        color: "#21a560"
+                    }]
+                });
+            });
+            // data = {
+            //   labels : labels,
+            //   datasets: [
+            //     { fillColor : "#21a560",data : mainData }
+            //   ]
+            // }
+        },
+        error: function(data){
+
+        }
+    });
 }
 

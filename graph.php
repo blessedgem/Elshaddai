@@ -65,7 +65,7 @@
 </div>
 
 
-<div id="line_graph"  width="1000" height="400"></div>
+<div id="line_graph"  width="100%" height="100%"></div>
 
 <script>
 
