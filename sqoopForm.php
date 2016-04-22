@@ -120,13 +120,6 @@
     </div>
 
 
-    <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Directory Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="dirname" name="dirname" placeholder="Directory Name" value="">
-            </div>
-    </div>
-
     <button onclick="myFunction()" type = "submit" class = "btn btn-primary">Connect</button>
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
