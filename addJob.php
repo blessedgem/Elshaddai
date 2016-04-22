@@ -28,10 +28,9 @@ if($_POST['graph'])
         foreach ($data as $value)
         {
             $values = $counter == '0' ? "" : $values . ", ";
-            $values .= $value;
+            $values .= $value ? "'" . $value . "'" : 'null';
             $counter ++;
         }
-        
         $atiaa->query("INSERT INTO dummy_table ({$_POST['cols']}) VALUES ($values);");
     }
 }
