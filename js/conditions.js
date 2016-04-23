@@ -498,11 +498,10 @@ function generateGraph()
 function grapher()
 {
     $(".mask").hide();
-    $(".popup table").remove();
     $(".popup").hide();
         
     $(".mask").show();
-    $("#graphical").show("slow");
+    $("#graphical").show();
     
     var lineGraph = $("<div/>");
     lineGraph.addClass('line_graph');
