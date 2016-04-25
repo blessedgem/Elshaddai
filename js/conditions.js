@@ -461,35 +461,37 @@ function generateGraph()
     
     form.append("\n\
         <div class='form-group' style='margin-top:50px'>\n\
-            <label for='name' class='col-sm-2 control-label'>Database Driver</label>\n\
+            <label for='graphs' class='col-sm-2 control-label'>Options</label>\n\
             <div class='col-sm-10'>\n\
-                <select  name=databasetype>\n\
-                    <option value='hadoop'>Hadoop</option>\n\
+                <select  name=graph>\n\
+                    <option value='line_graph'>Line graph</option>\n\
                     <option value='postgresql'>Postgresql</option>\n\
                     <option value='mysql'>Mysql</option>\n\
                 </select>\n\
             </div>\n\
         </div>\n\
         <div class='form-group'>\n\
-            <label for='ip' class='col-sm-2 control-label'>Local Host IP</label>\n\
+            <label for='x_axis' class='col-sm-2 control-label'>x-axis</label>\n\
             <div class='col-sm-10'>\n\
-                <input type='text' class='form-control' id='host' name='localhost' placeholder='host' value=''>\n\
+                <select  name=x_axis></select>\n\
             </div>\n\
         </div>\n\
         <div class='form-group'>\n\
-            <label for='ip' class='col-sm-2 control-label'>Virtual Host IP</label>\n\
+            <label for='y_axis' class='col-sm-2 control-label'>y-axis</label>\n\
             <div class='col-sm-10'>\n\
-                <input type='text' class='form-control' id='host' name='virtualhost' placeholder='host' value=''>\n\
+                <select  name=y_axis></select>\n\
             </div>\n\
-        </div>\n\
-        <div class='form-group'>\n\
-            <label for='name' class='col-sm-2 control-label'>Directory Name</label>\n\
-            <div class='col-sm-10'>\n\
-                <input type='text' class='form-control' id='dirname' name='dirname' placeholder='directory name' value=''>\n\
-            </div>\n\
-        </div>\n\
         </div>\n\
     ");
+    
+    $.each(columnNames, function(index, value)
+    { 
+        var option = $("<option/>");
+        option.text(columns[index]);
+        option.attr("value", value);
+        //$('[name="x_axis"]').append(option);
+    });
+    
     $("#graph_popup").append(form);
     $("#graph_popup").append("<button onclick=grapher() class='btn btn-primary' style='margin-left:55px'>Draw</button>");
 }
