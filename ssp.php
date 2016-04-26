@@ -6,7 +6,7 @@ $reponse = Database::query($_REQUEST, $_POST);
 
 if($_POST['graph'])
 {
-    echo $reponse['result'];
+    echo json_encode($reponse['result']);
 }
 
 else

@@ -293,7 +293,7 @@ function generateFunction()
     
     $("#data_table").addClass('stripe');
     $('#data_table').DataTable({
-        "lengthMenu": [[10, 15, 20], [10, 15, 20]],
+        "lengthMenu": [[5, 10, 20], [5, 10, 20]],
         "pagingType": "full_numbers",
         "processing": true,
         "serverSide": true,
@@ -484,13 +484,13 @@ function generateGraph()
         </div>\n\
     ");
     
-    $.each(columnNames, function(index, value)
-    { 
+    for (var key in colNames)
+    {
         var option = $("<option/>");
-        option.text(columns[index]);
-        option.attr("value", value);
+        option.text(colNames[key]);
+        option.attr("value", colNames[key]);
         option.appendTo(form.find('[name="x_axis"], [name="y_axis"]'));
-    });
+    }
     
     $("#graph_popup").append(form);
     $("#graph_popup").append("<button onclick=grapher() class='btn btn-primary' style='margin-left:55px'>Draw</button>");
@@ -509,8 +509,20 @@ function grapher()
     $("#graphical").append(lineGraph);
     
     $.ajax({
-        method: "GET",
-        url: "/GraphAPI.php",
+        url: "ssp.php",
+        type: "POST",
+        data: {
+            cols: cols,
+            where: cond,
+            graph: true,
+            host: dbHost,
+            password: dbPass,
+            username: dbUser,
+            databasename: db,
+            tablename: dbTable,
+            databasetype: dbType,
+            columnNames: $.extend({}, colNames)
+        },
         success: function(values){
             //To convert string to json
             values = $.parseJSON(values);
