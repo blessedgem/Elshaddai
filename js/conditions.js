@@ -465,8 +465,10 @@ function generateGraph()
             <div class='col-sm-10'>\n\
                 <select  name=graph>\n\
                     <option value='line'>Line graph</option>\n\
+                    <option value='area'>Area graph</option>\n\
+                    <option value='scatter'>Scatter diagram</option>\n\
                     <option value='bar'>Bar chart</option>\n\
-                    <option value='mysql'>Mysql</option>\n\
+                    <option value='pie'>Pie Chart</option>\n\
                 </select>\n\
             </div>\n\
         </div>\n\
