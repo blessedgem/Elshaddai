@@ -464,8 +464,8 @@ function generateGraph()
             <label for='graphs' class='col-sm-2 control-label'>Options</label>\n\
             <div class='col-sm-10'>\n\
                 <select  name=graph>\n\
-                    <option value='line_graph'>Line graph</option>\n\
-                    <option value='postgresql'>Postgresql</option>\n\
+                    <option value='line'>Line graph</option>\n\
+                    <option value='bar'>Bar chart</option>\n\
                     <option value='mysql'>Mysql</option>\n\
                 </select>\n\
             </div>\n\
@@ -496,7 +496,6 @@ function generateGraph()
     $("#graph_popup").append("<button onclick=grapher() class='btn btn-primary' style='margin-left:55px'>Draw</button>");
 }
 
-
 function grapher()
 {
     $(".mask").hide();
@@ -524,15 +523,15 @@ function grapher()
                 if(values.hasOwnProperty(key)) 
                 {
                     //Where you put the variables for the columns and 
-                    labels.push(values[key]['transaction_id']);
-                    mainData.push(parseFloat(values[key]['amount']));
+                    labels.push(values[key][$(document).find('[name="x_axis"]').val()]);
+                    mainData.push(parseFloat(values[key][$(document).find('[name="y_axis"]').val()]));
                 }
             }
       
             $(function (){
                 $(".line_graph").highcharts({
                     chart: {
-                        type: 'line'
+                        type: $(document).find('[name="graph"]').val()
                     },
                     xAxis: {
                         categories: labels,
@@ -546,7 +545,7 @@ function grapher()
                     },
                     series: [{
                         animation:true,
-                        name: 'data',
+                        name: $(document).find('[name="x_axis"]').val(),
                         data: mainData,
                         color: "#21a560"
                     }]
