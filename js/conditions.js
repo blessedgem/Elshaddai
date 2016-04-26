@@ -489,7 +489,7 @@ function generateGraph()
         var option = $("<option/>");
         option.text(columns[index]);
         option.attr("value", value);
-        //$('[name="x_axis"]').append(option);
+        option.appendTo(form.find('[name="x_axis"], [name="y_axis"]'));
     });
     
     $("#graph_popup").append(form);
