@@ -14,15 +14,12 @@ $atiaa = \ntentan\atiaa\Driver::getConnection(
     array(
         'driver' => $temp,
         'user' => $username,
-        'dbname' => $database,
+        'dbname' => 'public',
         'host'=> $host,
         'password'=>$password
     )
 );
-//Make the query
 
-$createDatabase = $atiaa->query("Create database $database");
-$createTable = $atiaa->query("Create table $tablename");
 
 $connection = ssh2_connect('10.76.254.127', 22);
 
@@ -44,13 +41,16 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
         $dataTypes[] = $fields[1];
     }
     
-    
-    
     echo json_encode($dataTypes);
-    
-            
     //echo stream_get_contents($stream);//json_encode($stream);
+    
+    $columns = implode(',', $columnNames);
+    $atiaa->query("Create table $tablename ($columns)");
+    
+    for ($i = 0; $i < count($columnNames); $i ++)
+    {
+        $atiaa->query("INSERT INTO $tablename ($dataTypes[$i]) VALUES ($columnNames[$i]);");
+    }   
 }
-
 
 ?>
