@@ -47,26 +47,25 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
     $columns = implode(',', $columnData);
     $atiaa->query("create table $tablename ($columns)");
     
-//    $data = require "ajumamoro.conf.php";
-//    $job = new ImportTable();
-//    
-//    $queue = ajumamoro\Queue::connectBroker([
-//        'driver' => 'redis',
-//        'scheme' => 'tcp',
-//        'host' => '127.0.0.1'
-//    ]);
+    $data = require "ajumamoro.conf.php";
+    $job = new ImportTable();
+    
+    $queue = ajumamoro\Queue::connectBroker([
+        'driver' => 'redis',
+        'scheme' => 'tcp',
+        'host' => '127.0.0.1'
+    ]);
 //
-//    $job->addAttribute('username', $_POST['username']);
-//    $job->addAttribute('databasename', $_POST['databasename']);
-//    $job->addAttribute('password',$_POST['password']);
-//    $job->addAttribute('localhost',$_POST['host']);
-//    $job->addAttribute('virtualhost','10.76.254.127');
-//    $job->addAttribute('databasetype',$_POST['databasetype']);
-//    
-//    //$job->addAttribute('export_databasetype',$_POST['export_databasetype']);
-//    $job->addAttribute('portnumber',$_POST['portnumber']);
-//    $job->addAttribute('dirname',$_POST['dirname']);
-//    $queue->add($job);
+    $job->addAttribute('username', $_POST['username']);
+    $job->addAttribute('databasename', $_POST['databasename']);
+    $job->addAttribute('password',$_POST['password']);
+    $job->addAttribute('localhost',$_POST['host']);
+    $job->addAttribute('virtualhost','10.76.254.127');
+    $job->addAttribute('databasetype',$_POST['databasetype']);
+        
+    $job->addAttribute('portnumber',$_POST['portnumber']);
+    $job->addAttribute('dirname',$_POST['dirname']);
+    $queue->add($job);
     
     echo 'It works';
 }
