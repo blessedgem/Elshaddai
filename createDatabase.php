@@ -72,7 +72,7 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
 
 else
 {
-    echo 'failed';
+    echo 'Connection Failed';
 }
 
 ?>
