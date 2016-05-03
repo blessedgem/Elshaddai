@@ -28,7 +28,12 @@ $(document).ready(function(){
     
     $("#accept_conditon").click(function(){
         
-        if(!$('#col_drop').val() || ($('#filt_drop').val() != '' && $('#fput_0').val() == '') || (($('#filt_drop').val() === '>=' && !$('#fput_1').val()))) 
+        var fOpt_1 = $(document).find('#fput_1').val();
+        var fOpt_2 = $(document).find('#fput_2').val();
+        var fCols = $(document).find('#col_drop').val();
+        var fFilt = $(document).find('#filt_drop').val();
+        
+        if(!fCols || (fFilt != '' && fOpt_1 == '') || ((fFilt === '>=' && !fOpt_2))) 
         {
             alert('seriously?');
             throw new Error("Something went badly wrong!");
@@ -41,18 +46,18 @@ $(document).ready(function(){
         $(".conditions table").remove();
         conditionsCounter = 0;
         
-        var split = $('#filt_drop').val().split("'");
+        var split = fFilt.split("'");
         var operand = split[0];
         
         if(split.length > 1)
         {
-            $('#fput_0').val() ? $('#fput_0').val("'" + split[1] + $('#fput_0').val() + split[1] + "'") : "";
-            $('#fput_1').val() ? $('#fput_1').val("'" + split[1] + $('#fput_1').val() + split[1] + "'") : "";
+            fOpt_1 ? $(document).find('#fput_1').val("'" + split[1] + fOpt_1 + split[1] + "'") : "";
+            fOpt_2 ? $(document).find('#fput_2').val("'" + split[1] + fOpt_2 + split[1] + "'") : "";
         }
         
-        var queried = $('#col_drop').val() + " " + operand + ($('#fput_0').val() ? " " + $('#fput_0').val() : "") + 
-            ($('#fput_1').val() ? " and " + $('#col_drop').val() + " <= " + $('#fput_1').val() : "");
+        var queried = fCols + " " + operand + (fOpt_1 ? " " + fOpt_1 : "") + (fOpt_2 ? " and " + fCols + " <= " + fOpt_2 : "");
         conditions[conditions.length] = [queried];
+        
         createTable($(".conditions"), ["Selected Conditions"], conditions, "conditions_table");
     });
 });
