@@ -80,7 +80,7 @@ function myFunction2()
 {
     $(".mask").show();
     $("#conditions_popup").show("slow");
-    $("#conditions_popup").find(":input").remove();
+    $("#conditions_popup").find(".form-horizontal").remove();
 
     var form = $("<form/>");
     form.addClass('form-horizontal');
