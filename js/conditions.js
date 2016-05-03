@@ -78,12 +78,23 @@ function myFunction2()
     $("#conditions_popup").find(":input").remove();
 
     var form = $("<form/>");
-    var columns_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '30px').attr('id', 'col_drop');
-    var filter_drop_down = $("<select/>").addClass('drop_margins').css('marginRight', '250px').attr('id', 'filt_drop');
-
-    var option = $("<option/>");
-    columns_drop_down.append(option);
-
+    form.addClass('form-horizontal');
+    
+    form.append("\n\
+        <div class='form-group' style='margin-top:50px'>\n\
+            <label for='col_drop' class='col-sm-2 control-label'>Select column</label>\n\
+            <div class='col-sm-10'>\n\
+                <select  name='col_drop' id='col_drop'><option></option></select>\n\
+            </div>\n\
+        </div>\n\
+        <div class='form-group'>\n\
+            <label for='filt_drop' class='col-sm-2 control-label'>Filter</label>\n\
+            <div class='col-sm-10'>\n\
+                <select  name='filt_drop' id='filt_drop'></select>\n\
+            </div>\n\
+        </div>\n\
+    ");
+    
     $.each(columnNames, function(index, value)
     { 
         var option = $("<option/>");
@@ -92,20 +103,17 @@ function myFunction2()
 
         option.click(function()
         {
-            filter_drop_down.html("");
+            form.find('#filt_drop').html("");
             for (var i = 0; i < conditionsCounter; i++) 
             {
-                form.find(":last").remove();
+                form.find(".form-group:last").remove();
             }
             conditionsCounter = 0;
-            createFilterDropDown(form, filter_drop_down, dataTypes[index]);
+            createFilterDropDown(form, form.find('#filt_drop'), dataTypes[index]);
         });
 
-        columns_drop_down.append(option);
+        form.find('#col_drop').append(option);
     });
-
-    form.append(columns_drop_down);
-    form.append(filter_drop_down);
 
     $("#conditions_popup").append(form);
 }
@@ -159,18 +167,25 @@ function createFilterDropDown(form, container, type)
             field_inputs = index == 5 ? 2 : (index == 0 || index == 1 ? 0 : 1);
             for (var i = 0; i < conditionsCounter; i++) 
             {
-                form.find(":last").remove();
+                form.find(".form-group:last").remove();
             }
 
             conditionsCounter = 0;
-            for (var i = 0; i < field_inputs; i++) 
+            for (var i = 1; i <= field_inputs; i++) 
             {
                 if (type === 'boolean') continue;
                 var text_input = $("<input/>").css('marginRight', '30px');
                 text_input.attr("placeholder", placehoder);
                 text_input.attr("id", 'fput_' + i);
                 text_input.attr("type", field);
-                form.append(text_input);
+                form.append("\n\
+                    <div class='form-group'>\n\
+                        <label for='name' class='col-sm-2 control-label'>Option " + i + "</label>\n\
+                        <div class='col-sm-10'>\n\
+                            <input type='" + field + "' class='form-control' id='fput_" + i + "' placeholder='" + placehoder + "'>\n\
+                        </div>\n\
+                    </div>\n\
+                ");
                 conditionsCounter++;
             };
         });
