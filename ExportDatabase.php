@@ -24,13 +24,21 @@ class ExportDatabase extends \ajumamoro\Job
 
     public function ExportDatabase()
     {
-        file_put_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username -P=$password -m 1' &> exportDatabse.out");
+        file_put_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables 
+        	--connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' 
+        	--username=$username -P=$password -m 1 --warehouse-dir=/user/hive/warehouse --hive-import'
+        	 &> exportDatabse.out");
     }
 
 
     public function go()
     {
-        file_put_contents("exportDatabase.sh", "ssh cloudera@{$this->getAttribute('virtualhost')} 'sqoop import-all-tables --connect 'jdbc:{$this->getAttribute('databasetype')}://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/{$this->getAttribute('databasename')}' --username={$this->getAttribute('username')} --password={$this->getAttribute('password')} ' &> exportDatabse.out");
+        file_put_contents("exportDatabase.sh", "ssh cloudera@{$this->getAttribute('virtualhost')} 
+        	'sqoop import-all-tables --connect 'jdbc:{$this->getAttribute('databasetype')}:
+        	//{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/
+        	{$this->getAttribute('databasename')}' --username={$this->getAttribute('username')} 
+        	--password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse --hive-import'
+        	 &> exportDatabse.out");
             
         $this->log("Executing Job");
         exec("bash exportDatabase.sh ");

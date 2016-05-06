@@ -74,6 +74,14 @@
     </div>
 
 
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Port Number</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="port" name="portnumber" placeholder="Port" value="">
+        </div>
+    </div>
+
+
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">User Name</label>
             <div class="col-sm-10">
@@ -101,11 +109,27 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Local Host IP</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="host" name="localhost" placeholder="Local Host" value="">
+        </div>
+    </div>
+    
+     <div class="form-group">
         <label for="ip" class="col-sm-2 control-label">Host</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="host" name="host" placeholder="host" value="">
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="ip" class="col-sm-2 control-label">Virtual Host IP</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="host" name="virtualhost" placeholder="Virtual Host" value="">
+        </div>
+    </div>
+
+
 
     <button type = "submit" class = "btn btn-primary">Connect</button>
     <div class="form-group">

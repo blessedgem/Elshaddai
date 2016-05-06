@@ -4,6 +4,11 @@ require "vendor/autoload.php";
 
 $databasename = $_POST['databasename'];
 $tablename = $_POST['tablename'];
+$portnumber = $_POST['portnumber'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$localhost = $_POST['localhost'];
+$virtualhost = $_POST['virtualhost'];
 
 class ImportTable extends \ajumamoro\Job
 {
@@ -12,7 +17,7 @@ class ImportTable extends \ajumamoro\Job
 
     public function ImportTable()
     {
-        file_put_contents("ImportTable.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username -P=$password -m 1' &> ImportTable.out");
+        file_put_contents("ImportTable.sh", "ssh cloudera@$virtualhost 'sqoop export --connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username -P=$password -m 1' &> ImportTable.out");
     }
 
 

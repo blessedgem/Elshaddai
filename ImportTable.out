@@ -1,0 +1,66 @@
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+16/05/06 05:04:03 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
+16/05/06 05:04:03 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+16/05/06 05:04:03 INFO manager.SqlManager: Using default fetchSize of 1000
+16/05/06 05:04:04 ERROR manager.CatalogQueryManager: Failed to list tables
+org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:247)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:65)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:159)
+	at org.postgresql.Driver.makeConnection(Driver.java:415)
+	at org.postgresql.Driver.connect(Driver.java:283)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:885)
+	at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:52)
+	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:102)
+	at org.apache.sqoop.tool.ImportAllTablesTool.run(ImportAllTablesTool.java:95)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:143)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:179)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:218)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:227)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:236)
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:61)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:129)
+	... 16 more
+16/05/06 05:04:04 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+java.lang.RuntimeException: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:118)
+	at org.apache.sqoop.tool.ImportAllTablesTool.run(ImportAllTablesTool.java:95)
+	at org.apache.sqoop.Sqoop.run(Sqoop.java:143)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:179)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:218)
+	at org.apache.sqoop.Sqoop.runTool(Sqoop.java:227)
+	at org.apache.sqoop.Sqoop.main(Sqoop.java:236)
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:247)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:65)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:159)
+	at org.postgresql.Driver.makeConnection(Driver.java:415)
+	at org.postgresql.Driver.connect(Driver.java:283)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:885)
+	at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:52)
+	at org.apache.sqoop.manager.CatalogQueryManager.listTables(CatalogQueryManager.java:102)
+	... 7 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:61)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:129)
+	... 16 more

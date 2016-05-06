@@ -13,9 +13,9 @@ if($_POST['graph'])
         array(
             'driver' => 'postgresql',
             'dbname' => 'dummy',
-            'password'=> $_POST['password'],
-            'user' => $_POST['username'],
-            'host'=> $_POST['host']
+            'password'=> 'gem',
+            'user' => 'postgres',
+            'host'=> 'localhost'
         )
     );
     

@@ -9,6 +9,9 @@ $password = $_POST['password'];
 $host = $_POST['host'];
 $tablename = $_POST['tablename'];
 $temp = $_POST['databasetype'];
+$portnumber = $_POST['portnumber'];
+$virtualhost = $_POST['virtualhost'];
+$localhost = $_POST['localhost'];
 
 //A library I borrowed from a friend for connection
 $atiaa = \ntentan\atiaa\Driver::getConnection(
