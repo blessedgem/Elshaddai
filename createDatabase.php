@@ -1,6 +1,7 @@
 <?php
 
 require "vendor/autoload.php";
+require "ImportTable.php";
 
 $username = $_POST['username'];
 $database = $_POST['databasename'];
@@ -65,6 +66,7 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
         
     $job->addAttribute('portnumber',$_POST['portnumber']);
     $job->addAttribute('dirname',$_POST['dirname']);
+    
     $queue->add($job);
     
     echo 'It works';
