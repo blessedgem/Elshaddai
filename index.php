@@ -12,9 +12,35 @@
    <script src="js/slippry.min.js"></script>
    <script>
     $(document).ready(function(){
-      $('#slippry').slippry()
+      $('#slippry').slippry();
+
+      $('#home').width($(window).width());
+     $('#home').height($(window).height());
+     $('#close').click(function(){
+        $('#home').slideUp('slow');
+     });
     });
+
+
   </script>
+
+  <style>
+
+  #home{
+    background-image:url("img/home.jpg");
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+  }
+
+  #close{
+    display: block;
+    margin: 40% auto;
+  }
+
+  </style>
 
    <title>GemSoft</title>
 </head>
@@ -58,43 +84,37 @@
 
 <ul id="slippry">
   <li>
-    <a href="#slide1"><img src="img/db.jpeg" alt="Welcome to Slippry!"></a>
+    <a href="#slide1"><img src="img/db.jpeg"></a>
   </li>
   <li>
-    <a href="#slide2"><img src="img/bigs1.jpg"  alt="This is an awesome jQuery slider plugin."></a>
+    <a href="#slide2"><img src="img/bigs1.jpg"></a>
   </li>
   <li>
-    <a href="#slide3"><img src="img/structured.jpg" alt="Check it out, you are going to <span class='red'>♥</span> it :)"></a>
+    <a href="#slide3"><img src="img/gem.jpg"></a>
   </li>
 </ul>
 
        
      </div>
 
+
+     <div id="home">
+       <button id="close" type = "submit" class = "btn btn-primary">Next</button>
+     </div>
+
      <div class="row">
-            <div class="span4">
-               
-
-
-           <ul class="nav nav-list">
-    
-    <li class="active"><a href="#">Home</a></li>
-    
-    
-    
-    
-</ul>
-   
-
-            </div>
-            <div class="span8">
-               
-
-<h3>How we started ?</h3>
+            <div class="span6">
+               <h3>How we started ?</h3>
 
 <p>GemSoft is a final year project work</p>
 
-<p>It is aimed at connecting Big Data System such as Apache Hadoop with the traditional database management systems.</p>
+<p>It is aimed at connecting Big Data System such as Apache Hadoop with the
+ traditional database management systems.</p>
+            </div>
+            <div class="span6">
+               
+
+
 
 <h3>It is an open source software</h3>
 
@@ -108,17 +128,18 @@
 
            <div class="row">
 <div class="span4">
-      <h4 class="muted text-center">Purpose Of GemSoft</h4>
+      <h4>Purpose Of GemSoft</h4>
       <p>Aid organisations to integrate their traditional relational database with hadoop</p>
       
    </div>
    <div class="span4">
-      <h4 class="muted text-center">How To Use GemSoft</h4>
-      <p>You could either start by clicking on Database to load a specific database from a specific RDBMS or click on Hadoop to export a processed data.</p>
+      <h4>How To Use GemSoft</h4>
+      <p>You could either start by clicking on Database to load a 
+      specific database from a specific RDBMS or click on Hadoop to export a processed data.</p>
       <a href="#" class="btn btn-success"><i class="icon-star icon-white"></i> Help</a>
    </div>
    <div class="span4">
-      <h4 class="muted text-center">Reach Us</h4>
+      <h4 >Reach Us</h4>
       <p>If you want to use this software ...</p>
       <a href="#" class="btn btn-info">Contact Us</a>
    </div>
