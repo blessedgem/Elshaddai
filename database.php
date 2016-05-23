@@ -124,7 +124,7 @@ class Database
             for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
             {
                 $globalSearch = $i == 0 ? $globalSearch : $globalSearch . " OR ";
-                $globalSearch .= $post['columnNames'][$i] . "::text LIKE '%". $request['search']['value'] . "%'"; 
+                $globalSearch .= "CONVERT({$post['columnNames'][$i]} ,char) LIKE '%". $request['search']['value'] . "%'"; 
             }
 
             $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
