@@ -24,23 +24,30 @@ class ExportDatabase extends \ajumamoro\Job
 
     public function ExportDatabase()
     {
-        file_put_contents("exportDatabase.sh", "ssh cloudera@$virtualhost 'sqoop import-all-tables 
-        	--connect 'jdbc:$databasetype://$localhost:$portnumber/$databasename' 
-        	--username=$username -P=$password -m 1 --warehouse-dir=/user/hive/warehouse --hive-import'
-        	 &> exportDatabse.out");
+        file_put_contents("exportDatabase.sh", "ssh cloudera@${$_POST['virtualhost']} \"sqoop import-all-tables 
+        	--connect 'jdbc:{$_POST['databasetype']}://{$_POST['localhost']}:{$_POST['portnumber']}/{$_POST['databasename']}' 
+        	--username={$_POST['username']} -P={$_POST['password']} -m 1 --warehouse-dir=/user/hive/warehouse --hive-import'
+        	 &> test.out");
     }
 
 
     public function go()
     {
-        file_put_contents("exportDatabase.sh", "ssh cloudera@{$this->getAttribute('virtualhost')} 
-        	'sqoop import-all-tables --connect 'jdbc:{$this->getAttribute('databasetype')}:
-        	//{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/
-        	{$this->getAttribute('databasename')}' --username={$this->getAttribute('username')} 
-        	--password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse --hive-import'
-        	 &> exportDatabse.out");
+
+        $command = "ssh cloudera@{$this->getAttribute('virtualhost')} " .
+             "\"sqoop import-all-tables --connect 'jdbc:{$this->getAttribute('databasetype')}://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/{$this->getAttribute('databasename')}' " .
+             "--username={$this->getAttribute('username')} --password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse " .
+             " --hive-import -m 1 \" " .
+             "&> test.out";
+
+
+         file_put_contents("exportDatabase.sh", $command);        
             
-        $this->log("Executing Job");
+        $this->log("Executing Job: $command");
         exec("bash exportDatabase.sh ");
     }
 }
+
+
+   
+

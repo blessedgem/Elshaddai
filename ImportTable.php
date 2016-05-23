@@ -17,21 +17,23 @@ class ImportTable extends \ajumamoro\Job
 
     public function ImportTable()
     {
-        file_put_contents("ImportTable.sh", "ssh cloudera@$virtualhost 'sqoop export --connect 
-            'jdbc:$databasetype://$localhost:$portnumber/$databasename' --username=$username 
-            -P=$password -m 1' &> ImportTable.out");
+        file_put_contents("ImportTable.sh", "ssh cloudera@{$_POST['virtualhost']} \"sqoop export --connect 
+            'jdbc:{$_POST['databasetype']}://{$_POST['localhost']}:{$_POST['portnumber']}/{$_POST['databasename']}' --username={$_POST['username']} 
+            -P={$_POST['password']} -m 1' &> ImportTable.out");
     }
 
 
     public function go()
     {
-        file_put_contents("ImportTable.sh", "ssh cloudera@{$this->getAttribute('virtualhost')} 
-            'sqoop export --connect 'jdbc:{$this->getAttribute('databasetype')}
-            ://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}
-            /{$this->getAttribute('databasename')}' --username={$this->getAttribute('username')} 
-            --password={$this->getAttribute('password')} ' &> ImportTable.out");
-            
-        $this->log("Executing Job");
+        $command = "ssh cloudera@{$this->getAttribute('virtualhost')} " .
+             "\"sqoop export --connect 'jdbc:{$this->getAttribute('databasetype')}://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/{$this->getAttribute('databasename')}' " .
+             "--username={$this->getAttribute('username')} --password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse " .
+             "--table {$this->getAttribute('tablename')} --hive-import -m 1 \" " .
+             "&> importTable.out";
+
+             file_put_contents("importTable.sh", $command);
+           
+        $this->log("Executing Job: $command");
         exec("bash ImportTable.sh ");
     }
 }
@@ -39,5 +41,6 @@ class ImportTable extends \ajumamoro\Job
 
 
 
-
+ 
+       
 

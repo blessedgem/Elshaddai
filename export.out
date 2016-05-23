@@ -1,0 +1,31 @@
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+16/05/22 10:16:29 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+16/05/22 10:16:29 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
+16/05/22 10:16:29 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: It seems that you're doing hive import directly into default
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: hive warehouse directory which is not supported. Sqoop is
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: firstly importing data into separate directory and then
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: inserting data into hive. Please consider removing
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: --target-dir or --warehouse-dir into /user/hive/warehouse in
+16/05/22 10:16:29 WARN tool.BaseSqoopTool: case that you will detect any issues.
+16/05/22 10:16:30 INFO manager.SqlManager: Using default fetchSize of 1000
+16/05/22 10:16:30 INFO tool.CodeGenTool: Beginning code generation
+16/05/22 10:16:30 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "hadoop_table" AS t LIMIT 1
+16/05/22 10:16:30 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+error: error reading /usr/lib/sqoop/lib/postgresql-9.2-1002.jdbc4.jar; error in opening zip file
+error: error reading /usr/lib/sqoop/lib/postgresql-9.2-1002.jdbc4.jar; error in opening zip file
+Note: /tmp/sqoop-cloudera/compile/5ae40e889f3beed47d9d28e2bf6fe9dc/hadoop_table.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+16/05/22 10:16:34 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/5ae40e889f3beed47d9d28e2bf6fe9dc/hadoop_table.jar
+16/05/22 10:16:34 WARN manager.PostgresqlManager: It looks like you are importing from postgresql.
+16/05/22 10:16:34 WARN manager.PostgresqlManager: This transfer can be faster! Use the --direct
+16/05/22 10:16:34 WARN manager.PostgresqlManager: option to exercise a postgresql-specific fast path.
+16/05/22 10:16:34 INFO mapreduce.ImportJobBase: Beginning import of hadoop_table
+16/05/22 10:16:34 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+16/05/22 10:16:35 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+16/05/22 10:16:36 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+16/05/22 10:16:36 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/05/22 10:16:37 WARN security.UserGroupInformation: PriviledgedActionException as:cloudera (auth:SIMPLE) cause:org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/user/hive/warehouse/hadoop_table already exists
+16/05/22 10:16:37 ERROR tool.ImportAllTablesTool: Encountered IOException running import job: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://quickstart.cloudera:8020/user/hive/warehouse/hadoop_table already exists

@@ -24,16 +24,18 @@ class ExportTable extends \ajumamoro\Job
 
     public function go()
     {
-        file_put_contents("exportTable.sh", "ssh cloudera@{$this->getAttribute('virtualhost')}
-         \"sqoop import --connect 'jdbc:postgresql://{$this->getAttribute('localhost')}:5432/dummy' 
-         --username=postgres --password=gem --warehouse-dir=/user/hive/warehouse/{$this->getAttribute('dirname')} 
-         --table dummy_table --hive-import -m 1 \"
-         &> exportTable.out");
+        $command = "ssh cloudera@{$this->getAttribute('virtualhost')} " .
+             "\"sqoop import --connect 'jdbc:postgresql://{$this->getAttribute('localhost')}:5432/dummy' " .
+             "--username=postgres --password=gem --warehouse-dir=/user/hive/warehouse/{$this->getAttribute('dirname')} " .
+             "--table dummy_table --hive-import -m 1 \" " .
+             "&> exportTable.out";
+        file_put_contents("exportTable.sh", $command);
          
-        $this->log("Executing Job");
+        $this->log("Executing Job: $command");
         exec("bash exportTable.sh ");
     }
+        
+       
 }
-
 
 
