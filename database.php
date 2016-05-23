@@ -130,6 +130,8 @@ class Database
             $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
             $globalSearch = $post['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
         }
+        
+        $columnSearch = "";
 
         $columns = $post['cols'] ? $post['cols'] : "*";
         $conditions = $post['where'] || $globalSearch || $columnSearch ? " WHERE " . $post['where'] : "";
