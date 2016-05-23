@@ -131,8 +131,23 @@ class Database
             $globalSearch = $post['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
         }
         
+        // Column Filtering
         $columnSearch = "";
+        if (isset($request['columns']))
+        {
+            $count = 0;
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                if ($request['columns'][$i]['search']['value']) 
+                {
+                    $columnSearch = $count ++ == 0 ? $columnSearch : $columnSearch . " AND ";
+                    $columnSearch .= "CONVERT({$post['columnNames'][$i]} ,char) LIKE '%". $request['columns'][$i]['search']['value'] . "%'"; 
+                }
+            }
 
+            $columnSearch = $columnSearch ? "(" . $columnSearch . ")" : "";
+            $columnSearch = ($post['where'] || $globalSearch) && $columnSearch ? " AND " . $columnSearch : $columnSearch;
+        }
         $columns = $post['cols'] ? $post['cols'] : "*";
         $conditions = $post['where'] || $globalSearch || $columnSearch ? " WHERE " . $post['where'] : "";
 
@@ -142,7 +157,6 @@ class Database
             "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 500",
             "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
         );
-        
     }
     
 }
