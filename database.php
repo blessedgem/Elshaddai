@@ -117,11 +117,6 @@ class Database
             $limit = " LIMIT ". $request['length']." OFFSET ".$request['start'];
         }
 
-        return array(
-            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 500",
-            "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
-        );
-            
         // Global Filtering
         $globalSearch = "";
         if ($request['search']['value']) 
@@ -136,6 +131,16 @@ class Database
             $globalSearch = $post['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
         }
 
+        $columns = $post['cols'] ? $post['cols'] : "*";
+        $conditions = $post['where'] || $globalSearch || $columnSearch ? " WHERE " . $post['where'] : "";
+
+        $conditions .= $globalSearch . $columnSearch;
+        
+        return array(
+            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 500",
+            "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
+        );
+        
     }
     
 }
