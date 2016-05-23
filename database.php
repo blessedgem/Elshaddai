@@ -95,6 +95,21 @@ class Database
     
     public static function mysql($request, $post)
     {
+        $order = "";
+        if (isset($request['order']))
+        {
+            $order = " ORDER BY ";
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                if ($request['order'][$i]) 
+                {
+                    $order = $i == 0 ? $order : $order . ", ";
+                    $order .= $post['columnNames'][$request['order'][$i]['column']]." ".addslashes($request['order'][$i]['dir']);
+                }
+            }
+            $order = $order == " ORDER BY " ? "" : $order;
+        }
+        
         // Paging
         $limit = '';
         if (isset($request['start']) && $request['length'] != -1) 
@@ -103,9 +118,24 @@ class Database
         }
 
         return array(
-            "query" => "SELECT * FROM {$post['tablename']}",
-            "display_query" => "SELECT * FROM {$post['tablename']} $limit"
+            "query" => "SELECT $columns FROM {$post['tablename']} $conditions $order LIMIT 500",
+            "display_query" => "SELECT $columns FROM {$post['tablename']} $conditions $order $limit"
         );
+            
+        // Global Filtering
+        $globalSearch = "";
+        if ($request['search']['value']) 
+        {
+            for ( $i = 0; $i < count($post['columnNames']); $i++ ) 
+            {
+                $globalSearch = $i == 0 ? $globalSearch : $globalSearch . " OR ";
+                $globalSearch .= $post['columnNames'][$i] . "::text LIKE '%". $request['search']['value'] . "%'"; 
+            }
+
+            $globalSearch = $globalSearch ? "(" . $globalSearch . ")" : "";
+            $globalSearch = $post['where'] && $globalSearch ? " AND " . $globalSearch : $globalSearch;
+        }
+
     }
     
 }
