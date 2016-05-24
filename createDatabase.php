@@ -63,9 +63,10 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
     $job->addAttribute('username', $_POST['username']);
     $job->addAttribute('databasename', $_POST['databasename']);
     $job->addAttribute('password',$_POST['password']);
-    $job->addAttribute('localhost',$_POST['host']);
-    $job->addAttribute('virtualhost','10.76.254.127');
+    $job->addAttribute('localhost',$_POST['localhost']);
+    $job->addAttribute('virtualhost',$_POST['virtualhost']);
     $job->addAttribute('databasetype',$_POST['databasetype']);
+    $job->addAttribute('tablename',$_POST['tablename']);
         
     $job->addAttribute('portnumber',$_POST['portnumber']);
     $job->addAttribute('dirname',$_POST['dirname']);

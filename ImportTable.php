@@ -19,15 +19,15 @@ class ImportTable extends \ajumamoro\Job
     {
         file_put_contents("ImportTable.sh", "ssh cloudera@{$_POST['virtualhost']} \"sqoop export --connect 
             'jdbc:{$_POST['databasetype']}://{$_POST['localhost']}:{$_POST['portnumber']}/{$_POST['databasename']}' --username={$_POST['username']} 
-            -P={$_POST['password']} --table {$_POST['tablename']}  -m 1 &> ImportTable.out");
+        --password={$_POST['password']} --export-dir=/user/hive/warehouse/{$_POST['tablename']}  --input-fields-terminated-by '\\t' --table {$_POST['tablename']} -m 1 \" &> ImportTable.out");
     }
-
 
     public function go()
     {
         $command = "ssh cloudera@{$this->getAttribute('virtualhost')} " .
              "\"sqoop export --connect 'jdbc:{$this->getAttribute('databasetype')}://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/{$this->getAttribute('databasename')}' " .
-             "--username={$this->getAttribute('username')} --password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse " .
+             "--username={$this->getAttribute('username')} --password={$this->getAttribute('password')} --export-dir=/user/hive/warehouse/{$this->getAttribute('tablename')} " .
+             "--input-fields-terminated-by '\\t' " .
              "--table {$this->getAttribute('tablename')}  -m 1 \" " .
              "&> importTable.out";
 

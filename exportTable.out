@@ -1,87 +1,87 @@
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
-16/05/23 11:06:12 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
-16/05/23 11:06:12 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
-16/05/23 11:06:12 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: It seems that you're doing hive import directly into default
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: hive warehouse directory which is not supported. Sqoop is
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: firstly importing data into separate directory and then
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: inserting data into hive. Please consider removing
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: --target-dir or --warehouse-dir into /user/hive/warehouse in
-16/05/23 11:06:12 WARN tool.BaseSqoopTool: case that you will detect any issues.
-16/05/23 11:06:12 INFO manager.SqlManager: Using default fetchSize of 1000
-16/05/23 11:06:12 INFO tool.CodeGenTool: Beginning code generation
-16/05/23 11:06:13 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "dummy_table" AS t LIMIT 1
-16/05/23 11:06:13 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+16/05/24 10:44:14 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.5.0
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+16/05/24 10:44:14 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
+16/05/24 10:44:14 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: It seems that you're doing hive import directly into default
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: hive warehouse directory which is not supported. Sqoop is
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: firstly importing data into separate directory and then
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: inserting data into hive. Please consider removing
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: --target-dir or --warehouse-dir into /user/hive/warehouse in
+16/05/24 10:44:14 WARN tool.BaseSqoopTool: case that you will detect any issues.
+16/05/24 10:44:15 INFO manager.SqlManager: Using default fetchSize of 1000
+16/05/24 10:44:15 INFO tool.CodeGenTool: Beginning code generation
+16/05/24 10:44:15 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "dummy_table" AS t LIMIT 1
+16/05/24 10:44:15 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
 error: error reading /usr/lib/sqoop/lib/postgresql-9.2-1002.jdbc4.jar; error in opening zip file
 error: error reading /usr/lib/sqoop/lib/postgresql-9.2-1002.jdbc4.jar; error in opening zip file
-Note: /tmp/sqoop-cloudera/compile/070bdb36802eaab3d26d6aba9fb8c413/dummy_table.java uses or overrides a deprecated API.
+Note: /tmp/sqoop-cloudera/compile/9ae69e64af94c86e03cf976944046d53/dummy_table.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-16/05/23 11:06:17 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/070bdb36802eaab3d26d6aba9fb8c413/dummy_table.jar
-16/05/23 11:06:17 WARN manager.PostgresqlManager: It looks like you are importing from postgresql.
-16/05/23 11:06:17 WARN manager.PostgresqlManager: This transfer can be faster! Use the --direct
-16/05/23 11:06:17 WARN manager.PostgresqlManager: option to exercise a postgresql-specific fast path.
-16/05/23 11:06:17 INFO mapreduce.ImportJobBase: Beginning import of dummy_table
-16/05/23 11:06:17 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
-16/05/23 11:06:17 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
-16/05/23 11:06:19 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
-16/05/23 11:06:19 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
-16/05/23 11:06:23 INFO db.DBInputFormat: Using read commited transaction isolation
-16/05/23 11:06:23 INFO mapreduce.JobSubmitter: number of splits:1
-16/05/23 11:06:23 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1464026388927_0001
-16/05/23 11:06:24 INFO impl.YarnClientImpl: Submitted application application_1464026388927_0001
-16/05/23 11:06:24 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1464026388927_0001/
-16/05/23 11:06:24 INFO mapreduce.Job: Running job: job_1464026388927_0001
-16/05/23 11:06:38 INFO mapreduce.Job: Job job_1464026388927_0001 running in uber mode : false
-16/05/23 11:06:38 INFO mapreduce.Job:  map 0% reduce 0%
-16/05/23 11:06:46 INFO mapreduce.Job:  map 100% reduce 0%
-16/05/23 11:06:47 INFO mapreduce.Job: Job job_1464026388927_0001 completed successfully
-16/05/23 11:06:47 INFO mapreduce.Job: Counters: 30
+16/05/24 10:44:19 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/9ae69e64af94c86e03cf976944046d53/dummy_table.jar
+16/05/24 10:44:19 WARN manager.PostgresqlManager: It looks like you are importing from postgresql.
+16/05/24 10:44:19 WARN manager.PostgresqlManager: This transfer can be faster! Use the --direct
+16/05/24 10:44:19 WARN manager.PostgresqlManager: option to exercise a postgresql-specific fast path.
+16/05/24 10:44:19 INFO mapreduce.ImportJobBase: Beginning import of dummy_table
+16/05/24 10:44:19 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+16/05/24 10:44:20 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+16/05/24 10:44:21 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+16/05/24 10:44:21 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+16/05/24 10:44:25 INFO db.DBInputFormat: Using read commited transaction isolation
+16/05/24 10:44:25 INFO mapreduce.JobSubmitter: number of splits:1
+16/05/24 10:44:25 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1464077152827_0029
+16/05/24 10:44:26 INFO impl.YarnClientImpl: Submitted application application_1464077152827_0029
+16/05/24 10:44:26 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1464077152827_0029/
+16/05/24 10:44:26 INFO mapreduce.Job: Running job: job_1464077152827_0029
+16/05/24 10:44:37 INFO mapreduce.Job: Job job_1464077152827_0029 running in uber mode : false
+16/05/24 10:44:37 INFO mapreduce.Job:  map 0% reduce 0%
+16/05/24 10:44:45 INFO mapreduce.Job:  map 100% reduce 0%
+16/05/24 10:44:46 INFO mapreduce.Job: Job job_1464077152827_0029 completed successfully
+16/05/24 10:44:46 INFO mapreduce.Job: Counters: 30
 	File System Counters
 		FILE: Number of bytes read=0
-		FILE: Number of bytes written=137364
+		FILE: Number of bytes written=137350
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
 		HDFS: Number of bytes read=87
-		HDFS: Number of bytes written=1309
+		HDFS: Number of bytes written=42
 		HDFS: Number of read operations=4
 		HDFS: Number of large read operations=0
 		HDFS: Number of write operations=2
 	Job Counters 
 		Launched map tasks=1
 		Other local map tasks=1
-		Total time spent by all maps in occupied slots (ms)=5818
+		Total time spent by all maps in occupied slots (ms)=6173
 		Total time spent by all reduces in occupied slots (ms)=0
-		Total time spent by all map tasks (ms)=5818
-		Total vcore-seconds taken by all map tasks=5818
-		Total megabyte-seconds taken by all map tasks=5957632
+		Total time spent by all map tasks (ms)=6173
+		Total vcore-seconds taken by all map tasks=6173
+		Total megabyte-seconds taken by all map tasks=6321152
 	Map-Reduce Framework
-		Map input records=96
-		Map output records=96
+		Map input records=9
+		Map output records=9
 		Input split bytes=87
 		Spilled Records=0
 		Failed Shuffles=0
 		Merged Map outputs=0
-		GC time elapsed (ms)=92
-		CPU time spent (ms)=760
-		Physical memory (bytes) snapshot=120467456
+		GC time elapsed (ms)=112
+		CPU time spent (ms)=840
+		Physical memory (bytes) snapshot=122142720
 		Virtual memory (bytes) snapshot=1507016704
 		Total committed heap usage (bytes)=60751872
 	File Input Format Counters 
 		Bytes Read=0
 	File Output Format Counters 
-		Bytes Written=1309
-16/05/23 11:06:47 INFO mapreduce.ImportJobBase: Transferred 1.2783 KB in 28.6681 seconds (45.6606 bytes/sec)
-16/05/23 11:06:47 INFO mapreduce.ImportJobBase: Retrieved 96 records.
-16/05/23 11:06:47 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "dummy_table" AS t LIMIT 1
-16/05/23 11:06:48 INFO hive.HiveImport: Loading uploaded data into Hive
+		Bytes Written=42
+16/05/24 10:44:46 INFO mapreduce.ImportJobBase: Transferred 42 bytes in 25.2419 seconds (1.6639 bytes/sec)
+16/05/24 10:44:46 INFO mapreduce.ImportJobBase: Retrieved 9 records.
+16/05/24 10:44:46 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM "dummy_table" AS t LIMIT 1
+16/05/24 10:44:46 INFO hive.HiveImport: Loading uploaded data into Hive
 
 Logging initialized using configuration in jar:file:/usr/jars/hive-common-1.1.0-cdh5.5.0.jar!/hive-log4j.properties
 OK
-Time taken: 1.365 seconds
+Time taken: 1.477 seconds
 Loading data to table default.dummy_table
-Table default.dummy_table stats: [numFiles=1, numRows=0, totalSize=1309, rawDataSize=0]
+Table default.dummy_table stats: [numFiles=1, numRows=0, totalSize=42, rawDataSize=0]
 OK
-Time taken: 3.257 seconds
+Time taken: 1.109 seconds

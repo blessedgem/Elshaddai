@@ -1,1 +1,1 @@
-ssh cloudera@10.76.254.127 "sqoop import --connect 'jdbc:postgresql://10.76.254.50:5432/dummy' --username=postgres --password=gem --warehouse-dir=/user/hive/warehouse/hey --table dummy_table --hive-import -m 1 " &> exportTable.out
+ssh cloudera@10.76.254.127 "sqoop import --connect 'jdbc:postgresql://10.76.254.50:5432/dummy' --username=postgres --password=gem --warehouse-dir=/user/hive/warehouse/hello --table dummy_table --hive-import -m 1 " &> exportTable.out

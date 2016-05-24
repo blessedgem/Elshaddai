@@ -6,6 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="css/slippry.css" type="text/css">
+    <link rel="stylesheet" href="css/gem.css" type="text/css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
    <script src="js/bootstrap.js"></script>
@@ -80,17 +81,15 @@
    </div>
 </div>
 
-<div class="hero-unit">
+<div  id="dkanui">
 
 <ul id="slippry">
+  
   <li>
-    <a href="#slide1"><img src="img/db.jpeg"></a>
+    <a href="#slide2"><img src="img/gem.png"></a>
   </li>
   <li>
-    <a href="#slide2"><img src="img/bigs1.jpg"></a>
-  </li>
-  <li>
-    <a href="#slide3"><img src="img/gem.jpg"></a>
+    <a href="#slide1"><img src="img/gem.jpg"></a>
   </li>
 </ul>
 
@@ -101,50 +100,6 @@
      <div id="home">
        <button id="close" type = "submit" class = "btn btn-primary">Next</button>
      </div>
-
-     <div class="row">
-            <div class="span6">
-               <h3>How we started ?</h3>
-
-<p>GemSoft is a final year project work</p>
-
-<p>It is aimed at connecting Big Data System such as Apache Hadoop with the
- traditional database management systems.</p>
-            </div>
-            <div class="span6">
-               
-
-
-
-<h3>It is an open source software</h3>
-
-<p>And we are still under development and will complete soon.</p>
-
-
-
-            </div>
-           </div>
-
-
-           <div class="row">
-<div class="span4">
-      <h4>Purpose Of GemSoft</h4>
-      <p>Aid organisations to integrate their traditional relational database with hadoop</p>
-      
-   </div>
-   <div class="span4">
-      <h4>How To Use GemSoft</h4>
-      <p>You could either start by clicking on Database to load a 
-      specific database from a specific RDBMS or click on Hadoop to export a processed data.</p>
-      <a href="#" class="btn btn-success"><i class="icon-star icon-white"></i> Help</a>
-   </div>
-   <div class="span4">
-      <h4 >Reach Us</h4>
-      <p>If you want to use this software ...</p>
-      <a href="#" class="btn btn-info">Contact Us</a>
-   </div>
-</div>
-
 <hr>
 <div class="footer">
 <p>&copy; 2016</p>
