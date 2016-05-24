@@ -73,7 +73,7 @@ if(ssh2_auth_password($connection, 'cloudera', 'cloudera'))
     
     $queue->add($job);
     
-    echo 'It works';
+    echo 'Data Imported';
 }
 else
 {

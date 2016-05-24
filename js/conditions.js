@@ -464,7 +464,7 @@ function exporter()
         dataType: "html",
         async: false,
         success: function(data) {
-            alert('me');
+            alert('Exported');
         }
     });
 }
