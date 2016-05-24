@@ -19,7 +19,7 @@ class ImportTable extends \ajumamoro\Job
     {
         file_put_contents("ImportTable.sh", "ssh cloudera@{$_POST['virtualhost']} \"sqoop export --connect 
             'jdbc:{$_POST['databasetype']}://{$_POST['localhost']}:{$_POST['portnumber']}/{$_POST['databasename']}' --username={$_POST['username']} 
-            -P={$_POST['password']} -m 1' &> ImportTable.out");
+            -P={$_POST['password']} --table {$_POST['tablename']}  -m 1 &> ImportTable.out");
     }
 
 
@@ -28,7 +28,7 @@ class ImportTable extends \ajumamoro\Job
         $command = "ssh cloudera@{$this->getAttribute('virtualhost')} " .
              "\"sqoop export --connect 'jdbc:{$this->getAttribute('databasetype')}://{$this->getAttribute('localhost')}:{$this->getAttribute('portnumber')}/{$this->getAttribute('databasename')}' " .
              "--username={$this->getAttribute('username')} --password={$this->getAttribute('password')} --warehouse-dir=/user/hive/warehouse " .
-             "--table {$this->getAttribute('tablename')} --hive-import -m 1 \" " .
+             "--table {$this->getAttribute('tablename')}  -m 1 \" " .
              "&> importTable.out";
 
              file_put_contents("importTable.sh", $command);
